@@ -16,6 +16,9 @@
     "pure",
     "refresh"
   ],
+  "alias": {
+    "vue" : "./node_modules/vue/dist/vue.common.js"
+  },
   "author": "linph",
   "license": "MIT",
   "bugs": {
@@ -24,5 +27,8 @@
   "homepage": "https://github.com/linpenghui958/dei-ui#readme",
   "dependencies": {
     "vue": "^2.5.17"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.9.7"
   }
 }
