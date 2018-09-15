@@ -1,8 +1,22 @@
 <template>
-  <button class="d-button">按钮</button>
+  <div>
+    <button class="d-button">
+      <svg class="icon" aria-hidden="true">
+        <use :xlink:href="`#i-${icon}`"></use>
+      </svg>
+      <slot></slot>
+    </button>
+  </div>
+
 </template>
 <script>
 export default {
+  props: {
+    icon: {
+      type: String,
+      default: ''
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -22,6 +36,7 @@ export default {
   &:focus{
     outline: none;
   }
+
 }
 
 </style>
