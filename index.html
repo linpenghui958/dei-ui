@@ -30,20 +30,18 @@
     body{
       font-size: var(--font-size);
     }
-    .icon{
-      width: 1em; height: 1em;
-      vertical-align: -0.15em;
-      fill: currentColor;
-      overflow: hidden;
-    }
+
 
   </style>
 </head>
 <body>
   <div id="app">
-    <d-button :icon="'setting'">slot按钮</d-button>
+    <d-button>按钮</d-button>
+    <d-button :icon="'setting'">按钮</d-button>
+    <d-button :icon="'setting'" :position="'right'">按钮</d-button>
+    <d-button :icon="'loading'" :position="'left'">按钮</d-button>
   </div>
 </body>
 <script src="./src/app.js"></script>
-<script src="//at.alicdn.com/t/font_839320_rku1tceos3o.js"></script>
+<script src="//at.alicdn.com/t/font_839320_w9cp8qlji0k.js"></script>
 </html>

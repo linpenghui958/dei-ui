@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <button class="d-button">
-      <svg class="icon" aria-hidden="true">
-        <use :xlink:href="`#i-${icon}`"></use>
-      </svg>
-      <slot></slot>
+    <button class="d-button" :class="{[`icon-${position}`] : true}">
+      <d-icon v-if="icon" :name="icon"></d-icon>
+      <d-icon class="loading" :name="icon"></d-icon>
+      <div class="content">
+        <slot></slot>
+      </div>
     </button>
-  </div>
 
 </template>
 <script>
@@ -15,11 +14,22 @@ export default {
     icon: {
       type: String,
       default: ''
+    },
+    position: {
+      type: String,
+      default: 'left',
+      validator: (value) => {
+        return !(value !== 'left' && value !== 'right');
+      }
     }
   }
 }
 </script>
 <style lang="scss">
+@keyframes spin {
+  0% { transform: rotate(0deg)}
+  100% { transform: rotate(360deg)}
+}
 .d-button{
   height: var(--button-height);
   font-size: var(--font-size);
@@ -27,6 +37,10 @@ export default {
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
   background: var(--butotn-bg);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
   &:hover{
     border-color: var(--border-hover-color);
   }
@@ -35,6 +49,28 @@ export default {
   }
   &:focus{
     outline: none;
+  }
+  > .content{
+    order: 2;
+  }
+  > .icon{
+    order: 1;
+    margin-right: .1em;
+  }
+  &.icon-right {
+    > .icon{
+      order: 2;
+      margin-right: 0;
+      margin-left: .1em;
+    }
+    > .content{
+      order: 1;
+    }
+  }
+
+  .loading {
+    animation: spin 2s infinite linear;
+    transform-origin: center;
   }
 
 }
