@@ -1,6 +1,6 @@
 {
-  "name": "dei-ui",
-  "version": "1.0.0",
+  "name": "dei-ui-test",
+  "version": "0.0.2",
   "description": "a transcendent ui ",
   "main": "index.js",
   "scripts": {
