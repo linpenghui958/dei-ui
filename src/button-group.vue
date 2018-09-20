@@ -5,6 +5,7 @@
 </template>
 <script>
   export default {
+    name: "DeiButtonGroup",
     mounted() {
       for (let ele of this.$el.children) {
         let tagName  = ele.tagName.toLowerCase()
@@ -15,7 +16,7 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .d-button-group{
   display: inline-flex;
   vertical-align: middle;
