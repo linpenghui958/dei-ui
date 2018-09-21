@@ -1,12 +1,22 @@
 <template>
-  <div class="wrapper">
-    <input type="text" :value="value" :disabled="disabled" :readonly="readonly">
+  <div class="wrapper" :class="{error}">
+    <input type="text" :value="value" :disabled="disabled" :readonly="readonly"
+      @change="$emit('change')"
+    >
+    <template v-if="error">
+      <Icon name="error" class="icon-error"></Icon>
+      <span class="errorMsg">{{error}}</span>
+    </template>
   </div>
 </template>
 
 <script>
+  import Icon from './icon'
   export default {
     name: 'DeiInput',
+    components: {
+      Icon
+    },
     props: {
       value: {
         type: String,
@@ -19,6 +29,9 @@
       readonly: {
         type: Boolean,
         default: false
+      },
+      error: {
+        type: String
       }
     }
   }
@@ -42,10 +55,14 @@
   $border-color-hover: #666;
   $font-size: 12px;
   $box-shadow-color: rgba(0,0,0,0.5);
-
+  $red: #f1435d;
 .wrapper{
   font-size: $font-size;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  > :not(:last-child) {
+    margin-right: .5em;
+  }
   > input{
     font-size: inherit;
     height: $height;
@@ -69,6 +86,19 @@
       color: #bbb;
       cursor: not-allowed;
     }
+
+  }
+
+  &.error{
+    > input {
+      border-color: $red;
+    }
+  }
+  .icon-error{
+    fill: $red;
+  }
+  .errorMsg{
+    color: $red;
   }
 }
 </style>

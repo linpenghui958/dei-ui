@@ -41,6 +41,9 @@
     <d-input value="张三2" readonly></d-input>
     <d-input value="张三3"></d-input>
     <div style="margin: 20px;">
+      <d-input value="张三3" error="请输入正确的姓名" ></d-input>
+    </div>
+    <div style="margin: 20px;">
       <d-button>按钮</d-button>
       <d-button :icon="'setting'" :loading="loading1" @click="loading1 = !loading1">按钮</d-button>
       <d-button :icon="'setting'" :position="'right'" :loading="loading2" @click="loading2 = !loading2">按钮</d-button>
