@@ -37,6 +37,20 @@
 </head>
 <body>
   <div id="app">
+    <d-row>
+      <d-col>1</d-col>
+      <d-col>2</d-col>
+    </d-row>
+    <d-row>
+      <d-col>1</d-col>
+      <d-col>2</d-col>
+      <d-col>3</d-col>
+    </d-row>
+    <d-row>
+      <d-col :span="2">1</d-col>
+      <d-col :span="22">11</d-col>
+    </d-row>
+    <hr/>
     <d-input value="张三1" disabled></d-input>
     <d-input value="张三2" readonly></d-input>
     <d-input value="张三3" v-model="message"></d-input>
