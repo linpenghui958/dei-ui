@@ -37,19 +37,23 @@
 </head>
 <body>
   <div id="app">
-    <d-row>
-      <d-col>1</d-col>
-      <d-col>2</d-col>
-    </d-row>
-    <d-row>
-      <d-col>1</d-col>
-      <d-col>2</d-col>
-      <d-col>3</d-col>
-    </d-row>
-    <d-row>
-      <d-col :span="2">1</d-col>
-      <d-col :span="22">11</d-col>
-    </d-row>
+    <div style="border: 1px solid black">
+      <d-row :gutter="20">
+        <d-col>1</d-col>
+        <d-col>2</d-col>
+      </d-row>
+      <d-row :gutter="20">
+        <d-col>1</d-col>
+        <d-col>2</d-col>
+        <d-col>3</d-col>
+      </d-row>
+
+      <d-row :gutter="20">
+        <d-col :span="2" >1</d-col>
+        <d-col :span="22">11</d-col>
+      </d-row>
+    </div>
+
     <hr/>
     <d-input value="张三1" disabled></d-input>
     <d-input value="张三2" readonly></d-input>
