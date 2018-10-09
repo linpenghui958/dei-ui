@@ -32,27 +32,36 @@
       font-size: var(--font-size);
     }
 
-
+    .demoBox{
+      height: 50px;
+      background: grey;
+      border: 1px solid red;
+    }
   </style>
 </head>
 <body>
   <div id="app">
-    <div style="border: 1px solid black">
-      <d-row :gutter="20">
-        <d-col>1</d-col>
-        <d-col>2</d-col>
-      </d-row>
-      <d-row :gutter="20">
-        <d-col>1</d-col>
-        <d-col>2</d-col>
-        <d-col>3</d-col>
-      </d-row>
-
-      <d-row :gutter="20">
-        <d-col :span="2" >1</d-col>
-        <d-col :span="22">11</d-col>
-      </d-row>
-    </div>
+    <d-row class="topbar">
+      <d-col class="demoBox" span="9">
+        <d-row align="left">
+          <d-col>1</d-col>
+          <d-col>2</d-col>
+          <d-col>3</d-col>
+          <d-col>4</d-col>
+        </d-row>
+      </d-col>
+      <d-col class="demoBox" span="15">
+        <d-row align="right">
+          <d-col>1</d-col>
+          <d-col>2</d-col>
+          <d-col>3</d-col>
+          <d-col>4</d-col>
+          <d-col>5</d-col>
+          <d-col>6</d-col>
+          <d-col>7</d-col>
+        </d-row>
+      </d-col>
+    </d-row>
 
     <hr/>
     <d-input value="张三1" disabled></d-input>
