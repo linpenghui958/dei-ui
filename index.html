@@ -42,24 +42,19 @@
 <body>
   <div id="app">
     <d-row class="topbar">
-      <d-col class="demoBox" span="9">
-        <d-row align="left">
-          <d-col>1</d-col>
-          <d-col>2</d-col>
-          <d-col>3</d-col>
-          <d-col>4</d-col>
-        </d-row>
+      <d-col class="demoBox" span="2"
+        :ipad="{span: 8, offset: 0}"
+        :narrowpc="{span: 6, offset: 0}"
+        :pc="{span: 4, offset: 0}"
+        :widepc="{span: 2, offset: 0}"
+          >1
       </d-col>
-      <d-col class="demoBox" span="15">
-        <d-row align="right">
-          <d-col>1</d-col>
-          <d-col>2</d-col>
-          <d-col>3</d-col>
-          <d-col>4</d-col>
-          <d-col>5</d-col>
-          <d-col>6</d-col>
-          <d-col>7</d-col>
-        </d-row>
+      <d-col class="demoBox" span="22"
+         :ipad="{span: 16, offset: 0}"
+         :narrowpc="{span: 18, offset: 0}"
+         :pc="{span: 20, offset: 0}"
+         :widepc="{span: 22, offset: 0}"
+      >11
       </d-col>
     </d-row>
 
