@@ -48,17 +48,29 @@
         gutter: 0
       }
     },
+    methods: {
+      createClass(obj, str = '') {
+        if (!obj) { return [] }
+        let arr = []
+        if (obj.span) {
+          arr.push(`col-${str}${obj.span}`)
+        }
+        if (obj.offset) {
+          arr.push(`offset-${str}${obj.offser}`)
+        }
+        return arr
+      }
+    },
     computed: {
       colClass() {
         let {span, offset, ipad, narrowpc, pc, widepc} = this
-        console.log(ipad)
+        let createClass = this.createClass
         return [
-          `col-${span}`,
-          offset && `offset-${offset}`,
-          ...(ipad ? [`col-ipad-${ipad.span}`] : ''),
-          ...(narrowpc ? [`col-narrow-pc-${narrowpc.span}`] : ''),
-          ...(pc ? [`col-pc-${pc.span}`] : ''),
-          ...(widepc ? [`col-wide-pc-${widepc.span}`] : ''),
+          ...createClass({span, offset}),
+          ...createClass(ipad, 'ipad-'),
+          ...createClass(narrowpc, 'narrowpc-'),
+          ...createClass(pc, 'pc-'),
+          ...createClass(widepc, 'widepc-')
         ]
       },
       colStyle () {
