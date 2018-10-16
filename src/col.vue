@@ -56,7 +56,7 @@
           arr.push(`col-${str}${obj.span}`)
         }
         if (obj.offset) {
-          arr.push(`offset-${str}${obj.offser}`)
+          arr.push(`offset-${str}${obj.offset}`)
         }
         return arr
       }
@@ -68,9 +68,9 @@
         return [
           ...createClass({span, offset}),
           ...createClass(ipad, 'ipad-'),
-          ...createClass(narrowpc, 'narrowpc-'),
+          ...createClass(narrowpc, 'narrow-pc-'),
           ...createClass(pc, 'pc-'),
-          ...createClass(widepc, 'widepc-')
+          ...createClass(widepc, 'wide-pc-')
         ]
       },
       colStyle () {
