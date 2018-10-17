@@ -25,9 +25,6 @@
     }
   </style>
   <style>
-    #app {
-      margin: 20px;
-    }
     body{
       font-size: var(--font-size);
     }
@@ -41,6 +38,15 @@
 </head>
 <body>
   <div id="app">
+    <d-layout style="height: 100vh;">
+      <d-header class="demoBox">header</d-header>
+      <d-layout>
+        <d-sider class="demoBox">sider</d-sider>
+        <d-content class="demoBox">content</d-content>
+      </d-layout>
+      <d-footer  class="demoBox">footer</d-footer>
+    </d-layout>
+
     <d-row class="topbar">
       <d-col class="demoBox" span="2"
         :ipad="{span: 8, offset: 0}"
