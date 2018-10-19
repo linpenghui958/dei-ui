@@ -31,19 +31,29 @@
 
     .demoBox{
       height: 50px;
-      background: grey;
-      border: 1px solid red;
+    }
+    .sider{
+      width: 200px;
+      background-color: #666;
+    }
+    .header{
+      height: 100px;
+      background-color: #999;
+    }
+    .footer{
+      height: 100px;
+      background-color: #ccc;
     }
   </style>
 </head>
 <body>
   <div id="app">
     <d-layout style="height: 100vh;">
-      <d-sider class="demoBox">sider</d-sider>
+      <d-sider>sider</d-sider>
       <d-layout>
-        <d-header class="demoBox">header</d-header>
-        <d-content class="demoBox">content</d-content>
-        <d-footer  class="demoBox">footer</d-footer>
+        <d-header>header</d-header>
+        <d-content>content</d-content>
+        <d-footer>footer</d-footer>
       </d-layout>
     </d-layout>
 

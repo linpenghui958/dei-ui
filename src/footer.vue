@@ -1,5 +1,5 @@
 <template>
-  <div class="fotter">
+  <div class="footer">
     <slot></slot>
   </div>
 </template>
