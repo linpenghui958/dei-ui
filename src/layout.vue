@@ -1,23 +1,36 @@
 <template>
-  <div class="layout">
+  <div class="layout" :class="layoutClass">
     <slot></slot>
   </div>
 </template>
 <script>
   export default {
     name: 'DeiLayout',
+    data() {
+      return {
+        layoutClass: {
+          hasSider: false
+        }
+      }
+    },
     mounted() {
       console.log(this.$children)
       this.$children.forEach(vm => {
-        console.log(vm.$options.name)
+        if (vm.$options.name === 'DeiSider') {
+          this.layoutClass.hasSider = true
+        }
       })
     }
   }
 </script>
 <style lang="scss" scoped>
   .layout{
+    flex-grow: 1;
     border: 1px solid red;
     display: flex;
     flex-direction: column;
+    &.hasSider{
+      flex-direction: row;
+    }
   }
 </style>
