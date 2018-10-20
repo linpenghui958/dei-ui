@@ -48,52 +48,7 @@
 </head>
 <body>
   <div id="app">
-    <d-layout style="height: 100vh;">
-      <d-sider>sider</d-sider>
-      <d-layout>
-        <d-header>header</d-header>
-        <d-content>content</d-content>
-        <d-footer>footer</d-footer>
-      </d-layout>
-    </d-layout>
-
-    <d-row class="topbar">
-      <d-col class="demoBox" span="2"
-        :ipad="{span: 8, offset: 0}"
-        :narrowpc="{span: 6, offset: 0}"
-        :pc="{span: 4, offset: 0}"
-        :widepc="{span: 2, offset: 0}"
-          >1
-      </d-col>
-      <d-col class="demoBox" span="22"
-         :ipad="{span: 16, offset: 0}"
-         :narrowpc="{span: 18, offset: 0}"
-         :pc="{span: 20, offset: 0}"
-         :widepc="{span: 22, offset: 0}"
-      >11
-      </d-col>
-    </d-row>
-
-    <hr/>
-    <d-input value="张三1" disabled></d-input>
-    <d-input value="张三2" readonly></d-input>
-    <d-input value="张三3" v-model="message"></d-input>
-    <p>{{message}}</p>
-    <button @click="message += 1"> + 1</button>
-    <div style="margin: 20px;">
-      <d-input value="张三3" error="请输入正确的姓名" ></d-input>
-    </div>
-    <div style="margin: 20px;">
-      <d-button>按钮</d-button>
-      <d-button :icon="'setting'" :loading="loading1" @click="loading1 = !loading1">按钮</d-button>
-      <d-button :icon="'setting'" :position="'right'" :loading="loading2" @click="loading2 = !loading2">按钮</d-button>
-      <d-button-group>
-        <d-button :icon="'left'" >上一页</d-button>
-        <d-button >更多</d-button>
-        <d-button :icon="'right'" :position="'right'">下一页</d-button>
-      </d-button-group>
-    </div>
-
+    <d-button @click="showToast">点我</d-button>
   </div>
 </body>
 <script src="./src/app.js"></script>
