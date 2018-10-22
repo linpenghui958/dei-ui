@@ -37,7 +37,16 @@ var app = new Vue({
   },
   methods: {
     showToast(e) {
-      this.$toast('show toast')
+      this.$toast('more sentencemore', {
+        closeButton: {
+          text: '我知道了',
+          callback: (el) => {
+            el.log()
+            console.log('用户说他知道了')
+          }
+        },
+        enableHtml: true
+      })
     }
   }
 })
