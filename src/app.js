@@ -38,6 +38,7 @@ var app = new Vue({
   methods: {
     showToast(e) {
       this.$toast('more sentencemore', {
+        position: 'middle',
         closeButton: {
           text: '我知道了',
           callback: (el) => {
