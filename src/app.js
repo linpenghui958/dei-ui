@@ -37,7 +37,7 @@ var app = new Vue({
   },
   methods: {
     showToast(e) {
-      this.$toast('more sentencemore', {
+      this.$toast(`${parseInt(Math.random()*100) }more sentencemore`, {
         position: 'middle',
         closeButton: {
           text: '我知道了',
