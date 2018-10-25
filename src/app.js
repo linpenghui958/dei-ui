@@ -36,13 +36,21 @@ var app = new Vue({
     loading3: false,
   },
   methods: {
-    showToast(e) {
+    showToast1() {
+      this.showToast('top')
+    },
+    showToast2() {
+      this.showToast('middle')
+    },
+    showToast3() {
+      this.showToast('bottom')
+    },
+    showToast(position) {
       this.$toast(`${parseInt(Math.random()*100) }more sentencemore`, {
-        position: 'middle',
+        position: position,
         closeButton: {
           text: '我知道了',
           callback: (el) => {
-            el.log()
             console.log('用户说他知道了')
           }
         },
