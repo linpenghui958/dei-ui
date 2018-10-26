@@ -19,12 +19,11 @@ export default {
   name: 'DeiToast',
   props: {
     autoClose: {
-      type: Boolean,
-      default: true
-    },
-    delay: {
-      type: Number,
-      default: 30
+      type: [Boolean, Number],
+      default: 5,
+      validator (value) {
+        return value === false || typeof value === 'number';
+      }
     },
     closeButton: {
       type: Object,
@@ -68,7 +67,7 @@ export default {
       if (this.autoClose) {
         setTimeout(() => {
           this.close()
-        }, this.delay * 1000)
+        }, this.autoClose * 1000)
       }
     },
     close() {
@@ -129,7 +128,7 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   }
   &.position-middle{
     top: 50%;
-    transform: translateX(-50%)translateY(-50%); 
+    transform: translateX(-50%)translateY(-50%);
     animation: fade-in $animation-duration;
   }
 }
