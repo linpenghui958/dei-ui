@@ -11,21 +11,20 @@ describe('Toast', () => {
   })
   describe('props', () => {
 
-    // it('接受 autoClose', (done) => {
-    //   let div = document.createElement('div')
-    //   document.body.appendChild(div)
-    //   const Constructor = Vue.extend(Toast)
-    //   const vm = new Constructor({
-    //     propsData: {
-    //       autoClose: 1
-    //     }
-    //   }).$mount()
-    //   vm.$on('close', () => {
-    //     console.log(document.body.contains(vm.$el));
-    //     expect(document.body.contains(vm.$el).to.equal(false))
-    //     done()
-    //   })
-    // })
+    it('接受 autoClose', (done) => {
+      let div = document.createElement('div')
+      document.body.appendChild(div)
+      const Constructor = Vue.extend(Toast)
+      const vm = new Constructor({
+        propsData: {
+          autoClose: 1
+        }
+      }).$mount(div)
+      vm.$on('close', () => {
+        expect(document.body.contains(vm.$el)).to.equal(false)
+        done()
+      })
+    })
 
     it('接受 closeButton', (done) => {
       const callback = sinon.fake()

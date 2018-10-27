@@ -20,7 +20,7 @@ export default {
   props: {
     autoClose: {
       type: [Boolean, Number],
-      default: 5,
+      default: 3,
       validator (value) {
         return value === false || typeof value === 'number';
       }
@@ -71,7 +71,6 @@ export default {
       }
     },
     close() {
-      console.log('调用一次close')
       this.$el.remove()
       this.$emit('close')
       this.$destroy()
@@ -102,7 +101,7 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   100% { opacity: 1;transform: translateY(0);}
 }
 @keyframes slide-down{
-  0% { opacity: 0;transform: translateY(100%);}
+  0% { opacity: 0;transform: translateY(-100%);}
   100% { opacity: 1;transform: translateY(0);}
 }
 .wrapper{
