@@ -12,6 +12,11 @@ import Footer from './footer'
 import Sider from './sider'
 import Toast from './toast'
 import plugin from './plugin'
+import Tabs from './tabs'
+import TabsBody from './tabs-body'
+import TabsHead from './tabs-head'
+import TabsItem from './tabs-item'
+import TabsPane from './tabs-pane'
 
 Vue.component('d-button', Button)
 Vue.component('d-icon', Icon)
@@ -26,14 +31,17 @@ Vue.component('d-sider', Sider)
 Vue.component('d-row', Row)
 Vue.component('d-toast', Toast)
 Vue.use(plugin)
+Vue.component('d-tabs', Tabs)
+Vue.component('d-tabs-body', TabsBody)
+Vue.component('d-tabs-head', TabsHead)
+Vue.component('d-tabs-item', TabsItem)
+Vue.component('d-tabs-pane', TabsPane)
+
 
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'dei-ui',
-    loading1: false,
-    loading2: false,
-    loading3: false,
+    selectedTab: 'sports'
   },
   methods: {
     showToast1() {
