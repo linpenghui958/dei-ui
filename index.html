@@ -48,7 +48,7 @@
 </head>
 <body>
   <div id="app">
-    <d-tabs :selected="sports">
+    <d-tabs :selected.sync="selectedTab" >
       <d-tabs-head>
         <template name="actions">
           <button>操作</button>

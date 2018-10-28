@@ -5,7 +5,10 @@
 </template>
 
 <script>
-  export  default {}
+  export  default {
+    name: 'DeiTabsBody',
+    inject: ['eventBus']
+  }
 </script>
 
 <style lang="scss">
