@@ -8,6 +8,10 @@
   export  default {
     name: 'DeiTabs',
     props: {
+      active: {
+        type: Boolean,
+        default: false
+      },
       disabled: {
         type: Boolean,
         default: false
@@ -32,5 +36,8 @@
 </script>
 
 <style lang="scss">
-
+.tabs-item{
+  flex-shrink: 0;
+  padding: 0 1em;
+}
 </style>
