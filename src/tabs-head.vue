@@ -14,7 +14,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $tab-height: 40px;
 .tabs-head{
   display: flex;

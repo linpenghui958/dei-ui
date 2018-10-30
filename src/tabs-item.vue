@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="xxx">
+  <div class="tabs-item" @click="xxx" :class="classes">
     <slot></slot>
   </div>
 </template>
@@ -8,10 +8,6 @@
   export  default {
     name: 'DeiTabs',
     props: {
-      active: {
-        type: Boolean,
-        default: false
-      },
       disabled: {
         type: Boolean,
         default: false
@@ -21,11 +17,23 @@
         required: true
       }
     },
+    data() {
+      return {
+        active: false
+      }
+    },
     inject: ['eventBus'],
     created() {
       this.eventBus.$on('update:selected', (name) => {
-        console.log(name)
+        this.active = name === this.name
       })
+    },
+    computed: {
+      classes() {
+        return {
+          active: this.active
+        }
+      }
     },
     methods: {
       xxx() {
@@ -35,9 +43,12 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tabs-item{
   flex-shrink: 0;
   padding: 0 1em;
+  &.active{
+    background-color: red;
+  }
 }
 </style>
