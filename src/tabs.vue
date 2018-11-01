@@ -32,7 +32,15 @@
       }
     },
     mounted () {
-      this.eventBus.$emit('update:selected', this.selected)
+      this.$children.forEach((vm) => {
+        if (vm.$options.name === 'DeiTabsHead') {
+          vm.$children.forEach((child) => {
+            if (child.$options.name === 'DeiTabsItem' && child.name === this.selected) {
+              this.eventBus.$emit('update:selected', this.selected, child)
+            }
+          })
+        }
+      })
 
     }
   }

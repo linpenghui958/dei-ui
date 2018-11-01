@@ -15,7 +15,8 @@
       }
     },
     created() {
-      this.eventBus.$on('update:selected', (name) => {
+      this.eventBus.$on('update:selected', (name, vm) => {
+        console.log(vm)
         this.active = name === this.name
       })
     },
