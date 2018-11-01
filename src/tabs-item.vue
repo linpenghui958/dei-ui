@@ -31,12 +31,14 @@
     computed: {
       classes() {
         return {
-          active: this.active
+          active: this.active,
+          disabled: this.disabled
         }
       }
     },
     methods: {
       xxx() {
+        if (this.disabled) return
         this.eventBus.$emit('update:selected', this.name, this)
       }
     }
@@ -44,6 +46,8 @@
 </script>
 
 <style lang="scss" scoped>
+  $blue: blue;
+  $disabled-text-color: grey;
 .tabs-item{
   flex-shrink: 0;
   padding: 0 1em;
@@ -52,7 +56,12 @@
   align-items: center;
   cursor: pointer;
   &.active{
-    background-color: red;
+    color: $blue;
+    font-weight: blod;
+  }
+  &.disabled{
+    color: $disabled-text-color;
+    cursor: not-allowed;
   }
 }
 </style>
