@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="xxx" :class="classes">
+  <div class="tabs-item" @click="xxx" :class="classes" :data-name="name">
     <slot></slot>
   </div>
 </template>
