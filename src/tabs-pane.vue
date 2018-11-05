@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-pane" :class="classes" v-if="active">
+  <div class="tabs-pane" :class="classes" v-if="active" :data-name="name">
     <slot></slot>
   </div>
 </template>
@@ -15,9 +15,11 @@
       }
     },
     created() {
-      this.eventBus.$on('update:selected', (name, vm) => {
-        this.active = name === this.name
-      })
+      if (this.eventBus) {
+        this.eventBus.$on('update:selected', (name, vm) => {
+          this.active = name === this.name
+        })
+      }
     },
     data() {
       return {

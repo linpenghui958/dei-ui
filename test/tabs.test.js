@@ -46,4 +46,8 @@ describe('Tabs', () => {
     })
   })
 
+  it('可以设置direction props', () => {
+
+  })
+
 })
