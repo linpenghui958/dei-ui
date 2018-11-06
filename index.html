@@ -48,37 +48,42 @@
 </head>
 <body>
   <div id="app">
-    <d-tabs>
-      div{<hi></hi>}
+
+    <d-tabs :selected.sync="selectedTab" >
+      <d-tabs-head>
+        <template slot="actions">
+          <button>操作</button>
+        </template>
+        <d-tabs-item name="woman" disabled>
+          <d-icon name="setting"></d-icon>
+          美女
+        </d-tabs-item>
+        <d-tabs-item name="finance">
+          财经
+        </d-tabs-item>
+        <d-tabs-item name="sports">
+          体育
+        </d-tabs-item>
+      </d-tabs-head>
+      <d-tabs-body>
+        <d-tabs-pane name="woman">
+          美女相关咨询
+        </d-tabs-pane>
+        <d-tabs-pane name="finance">
+          财经相关咨询
+        </d-tabs-pane>
+        <d-tabs-pane name="sports">
+          体育相关咨询
+        </d-tabs-pane>
+      </d-tabs-body>
     </d-tabs>
-    <!--<d-tabs :selected.sync="selectedTab" >-->
-      <!--<d-tabs-head>-->
-        <!--<template slot="actions">-->
-          <!--<button>操作</button>-->
-        <!--</template>-->
-        <!--<d-tabs-item name="woman" disabled>-->
-          <!--<d-icon name="setting"></d-icon>-->
-          <!--美女-->
-        <!--</d-tabs-item>-->
-        <!--<d-tabs-item name="finance">-->
-          <!--财经-->
-        <!--</d-tabs-item>-->
-        <!--<d-tabs-item name="sports">-->
-          <!--体育-->
-        <!--</d-tabs-item>-->
-      <!--</d-tabs-head>-->
-      <!--<d-tabs-body>-->
-        <!--<d-tabs-pane name="woman">-->
-          <!--美女相关咨询-->
-        <!--</d-tabs-pane>-->
-        <!--<d-tabs-pane name="finance">-->
-          <!--财经相关咨询-->
-        <!--</d-tabs-pane>-->
-        <!--<d-tabs-pane name="sports">-->
-          <!--体育相关咨询-->
-        <!--</d-tabs-pane>-->
-      <!--</d-tabs-body>-->
-    <!--</d-tabs>-->
+
+    <d-popover>
+      <template slot="content">
+        <div>popover content</div>
+      </template>
+      <button>click me</button>
+    </d-popover>
   </div>
 </body>
 <script src="./src/app.js"></script>

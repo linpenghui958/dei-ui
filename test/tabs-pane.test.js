@@ -20,14 +20,19 @@ describe('TabsPane', () => {
     expect(TabsPane).to.be.ok
   })
 
-  // it('接受 name 属性', () => {
-  //   const Construtor = Vue.extend(TabsPane)
-  //   const vm = new Construtor({
-  //     propsData: {
-  //       name: 'xxx'
-  //     }
-  //   }).$mount()
-  //   console.log(vm.$el);
-  //   expect(vm.$el.getAttribute('data-name')).to.eq('xxx')
-  // })
+  it('接受 name 属性', () => {
+    const Construtor = Vue.extend(TabsPane)
+    const vm = new Construtor({
+      propsData: {
+        name: 'xxx'
+      },
+      data() {
+        return {
+          active: true
+        }
+      }
+    }).$mount()
+    console.log(vm.$el);
+    expect(vm.$el.getAttribute('data-name')).to.eq('xxx')
+  })
 })
