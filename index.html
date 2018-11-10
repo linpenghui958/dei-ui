@@ -46,43 +46,43 @@
     }
   </style>
 </head>
-<body style="border: 1px solid green;">
+<body style="border: 1px solid green;padding: 100px;">
   <div id="app">
 
-    <d-tabs :selected.sync="selectedTab" >
-      <d-tabs-head>
-        <template slot="actions">
-          <button>操作</button>
-        </template>
-        <d-tabs-item name="woman" disabled>
-          <d-icon name="setting"></d-icon>
-          美女
-        </d-tabs-item>
-        <d-tabs-item name="finance">
-          财经
-        </d-tabs-item>
-        <d-tabs-item name="sports">
-          体育
-        </d-tabs-item>
-      </d-tabs-head>
-      <d-tabs-body>
-        <d-tabs-pane name="woman">
-          美女相关咨询
-        </d-tabs-pane>
-        <d-tabs-pane name="finance">
-          财经相关咨询
-        </d-tabs-pane>
-        <d-tabs-pane name="sports">
-          体育相关咨询
-        </d-tabs-pane>
-      </d-tabs-body>
-    </d-tabs>
+    <!--<d-tabs :selected.sync="selectedTab" >-->
+      <!--<d-tabs-head>-->
+        <!--<template slot="actions">-->
+          <!--<d-button>操作</d-button>-->
+        <!--</template>-->
+        <!--<d-tabs-item name="woman" disabled>-->
+          <!--<d-icon name="setting"></d-icon>-->
+          <!--美女-->
+        <!--</d-tabs-item>-->
+        <!--<d-tabs-item name="finance">-->
+          <!--财经-->
+        <!--</d-tabs-item>-->
+        <!--<d-tabs-item name="sports">-->
+          <!--体育-->
+        <!--</d-tabs-item>-->
+      <!--</d-tabs-head>-->
+      <!--<d-tabs-body>-->
+        <!--<d-tabs-pane name="woman">-->
+          <!--美女相关咨询-->
+        <!--</d-tabs-pane>-->
+        <!--<d-tabs-pane name="finance">-->
+          <!--财经相关咨询-->
+        <!--</d-tabs-pane>-->
+        <!--<d-tabs-pane name="sports">-->
+          <!--体育相关咨询-->
+        <!--</d-tabs-pane>-->
+      <!--</d-tabs-body>-->
+    <!--</d-tabs>-->
 
     <d-popover>
       <template slot="content">
-        <div>popover content</div>
+        <div>popover content content contentpopover content content contentpopover content content contentpopover content content content</div>
       </template>
-      <button>click me</button>
+      <d-button>click me</d-button>
     </d-popover>
   </div>
 </body>
