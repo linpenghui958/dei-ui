@@ -77,31 +77,60 @@
         <!--</d-tabs-pane>-->
       <!--</d-tabs-body>-->
     <!--</d-tabs>-->
+    <div>
+      <d-popover position="bottom">
+        <template slot="content">
+          <div>popover content </div>
+        </template>
+        <d-button>click me</d-button>
+      </d-popover>
+      <d-popover>
+        <template slot="content">
+          <div>popover content</div>
+        </template>
+        <d-button>click me</d-button>
+      </d-popover>
+      <d-popover position="left">
+        <template slot="content">
+          <div>popover content</div>
+        </template>
+        <d-button>click me</d-button>
+      </d-popover>
+      <d-popover position="right">
+        <template slot="content">
+          <div>popover content</div>
+        </template>
+        <d-button>click me</d-button>
+      </d-popover>
+    </div>
+    <br/><br/><br/><br/>
+    <div>
+      <d-popover position="bottom" trigger="mouse">
+        <template slot="content">
+          <div>popover content </div>
+        </template>
+        <d-button>click me</d-button>
+      </d-popover>
+      <d-popover trigger="mouse">
+        <template slot="content"  >
+          <div>popover content</div>
+        </template>
+        <d-button>click me</d-button>
+      </d-popover>
+      <d-popover position="left"  trigger="mouse">
+        <template slot="content">
+          <div>popover content</div>
+        </template>
+        <d-button>click me</d-button>
+      </d-popover>
+      <d-popover position="right"  trigger="mouse">
+        <template slot="content">
+          <div>popover content</div>
+        </template>
+        <d-button>click me</d-button>
+      </d-popover>
+    </div>
 
-    <d-popover position="bottom">
-      <template slot="content">
-        <div>popover content </div>
-      </template>
-      <d-button>click me</d-button>
-    </d-popover>
-    <d-popover>
-      <template slot="content">
-        <div>popover content</div>
-      </template>
-      <d-button>click me</d-button>
-    </d-popover>
-    <d-popover position="left">
-      <template slot="content">
-        <div>popover content</div>
-      </template>
-      <d-button>click me</d-button>
-    </d-popover>
-    <d-popover position="right">
-      <template slot="content">
-        <div>popover content</div>
-      </template>
-      <d-button>click me</d-button>
-    </d-popover>
   </div>
 </body>
 <script src="./src/app.js"></script>
