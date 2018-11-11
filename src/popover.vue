@@ -34,23 +34,23 @@
         const { contentWrapper, triggerWrapper} = this.$refs
         document.body.appendChild(contentWrapper)
         let { width, height, top, left } = triggerWrapper.getBoundingClientRect()
-        if ( this.position === 'top' ) {
-          contentWrapper.style.left = left + window.scrollX + 'px'
-          contentWrapper.style.top = top + window.scrollY + 'px'
-        } else if ( this.position === 'bottom' ) {
-          contentWrapper.style.left = left + window.scrollX + 'px'
-          contentWrapper.style.top = top + height + window.scrollY + 'px'
-        } else if ( this.position === 'left' ) {
-          const {height: height2} = contentWrapper.getBoundingClientRect()
-          console.log(height2 - height)
-          contentWrapper.style.left = left + window.scrollX + 'px'
-          contentWrapper.style.top = top + window.scrollY - (height2 - height)/2 + 'px'
-        } else if ( this.position === 'right' ) {
-          const {height: height2} = contentWrapper.getBoundingClientRect()
-          console.log(height2 - height)
-          contentWrapper.style.left = left + width +  window.scrollX + 'px'
-          contentWrapper.style.top = top + window.scrollY - (height2 - height)/2 + 'px'
+        const { height: height2 } = contentWrapper.getBoundingClientRect()
+        let positionsObj = {
+          top: {
+            left: left + window.scrollX, top: top + window.scrollY },
+          bottom: {
+            left: left + window.scrollX, top: top + height + window.scrollY },
+          left: {
+            left: left + window.scrollX,
+            top: top + window.scrollY - (height2 - height)/2
+          },
+          right: {
+            left: left + width +  window.scrollX,
+            top: top + window.scrollY - (height2 - height)/2
+          }
         }
+        contentWrapper.style.left =  positionsObj[this.position].left + 'px'
+        contentWrapper.style.top =  positionsObj[this.position].top + 'px'
       },
       clickDocument (e) {
         if (this.$refs.popover &&
