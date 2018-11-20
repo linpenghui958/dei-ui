@@ -28,8 +28,9 @@
     },
     inject: ['eventBus'],
     mounted() {
-      this.eventBus.$on('update:selected', (name) => {
-        if(name === this.name) {
+      this.eventBus.$on('update:selected', (selectedArr) => {
+        console.log(selectedArr)
+        if(selectedArr.indexOf(this.name) >= 0) {
           this.open = true
         } else {
           this.open = false
@@ -38,8 +39,11 @@
     },
     methods: {
       toggle() {
-        console.log(this.name)
-        this.eventBus.$emit('update:selected', this.name)
+        if (!this.open) {
+          this.eventBus.$emit('update:addSelected', this.name)
+        } else {
+          this.eventBus.$emit('update:removeSelected', this.name)
+        }
       }
     }
   }
