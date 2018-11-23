@@ -29,7 +29,6 @@
     inject: ['eventBus'],
     mounted() {
       this.eventBus.$on('update:selected', (selectedArr) => {
-        console.log(selectedArr)
         if(selectedArr.indexOf(this.name) >= 0) {
           this.open = true
         } else {
