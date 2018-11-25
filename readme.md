@@ -8,7 +8,7 @@
 
 ## 开始使用
 
-1. 安装
+1. 安装1
     ```js
     npm install dei-ui
     ```
