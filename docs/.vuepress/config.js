@@ -10,17 +10,19 @@ module.exports = {
       {
         title: '使用',
         children: [
-          '/install/',
-          '/install/install'
+          '/guide/',
+          '/guide/install'
         ]
       },
       {
         title: '组件',
         children: [
-          '/components/',
-          '/components/button'
+          '/components/button',
+          '/components/input',
+          '/components/toast',
         ]
       }
     ]
+
   }
 }

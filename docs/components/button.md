@@ -1,6 +1,11 @@
 ---
 sidebarDepth: 2
 ---
-# Button content
+# Button
+
 <button-view></button-view>
-<test></test>
+
+
+# Button-Group
+
+<button-group-view></button-group-view>

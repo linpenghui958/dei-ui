@@ -48,16 +48,7 @@ export default {
   100% { transform: rotate(360deg)}
 }
 .d-button{
-  height: $button-height;
-  font-size: $font-size;
-  padding: 0 1em;
-  border-radius: $border-radius;
-  border: 1px solid $border-color;
-  background: $button-bg;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  vertical-align: middle;
+  height: $button-height;font-size: $font-size;padding: 0 1em;border-radius: $border-radius;border: 1px solid $border-color;background: $button-bg;display: inline-flex;justify-content: center;align-items: center;vertical-align: middle;
   &:hover{
     border-color: $border-color-hover;
   }
@@ -71,14 +62,11 @@ export default {
     order: 2;
   }
   > .icon{
-    order: 1;
-    margin-right: .1em;
+    order: 1;margin-right: .1em;
   }
   &.icon-right {
     > .icon{
-      order: 2;
-      margin-right: 0;
-      margin-left: .1em;
+      order: 2;margin-right: 0;margin-left: .1em;
     }
     > .button-content{
       order: 1;
@@ -86,8 +74,7 @@ export default {
   }
 
   .loading {
-    animation: spin 2s infinite linear;
-    transform-origin: center;
+    animation: spin 2s infinite linear;transform-origin: center;
   }
 
 }
