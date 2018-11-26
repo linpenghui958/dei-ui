@@ -52,6 +52,9 @@ var app = new Vue({
   methods: {
     yyy() {
       console.log('yyy')
+    },
+    showToast() {
+      this.$toast('默认toast')
     }
   }
 })

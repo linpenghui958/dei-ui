@@ -1,8 +1,11 @@
 <template>
   <div>
-
-    <d-button @click="clickBtn">默认toast</d-button>
-
+    <d-button @click="$toast('默认toast')">默认toast</d-button>
+    <d-button @click="$toast('中间弹出toast', {position: 'middle'})">中间弹出toast</d-button>
+    <d-button @click="$toast('下方弹出toast', {position: 'bottom'})">下方弹出toast</d-button>
+    <pre>
+      <code>{{content}}</code>
+    </pre>
   </div>
 </template>
 
@@ -17,9 +20,13 @@
     components: {
       'd-button': Button
     },
-    methods: {
-      clickBtn() {
-        this.$toast('默认toast')
+    data() {
+      return {
+        content: `
+          <d-button @click="$toast('默认toast')">默认toast</d-button>
+          <d-button @click="$toast('中间弹出toast', {position: 'middle'})">中间弹出toast</d-button>
+          <d-button @click="$toast('下方弹出toast', {position: 'bottom'})">下方弹出toast</d-button>
+        `
       }
     }
   }

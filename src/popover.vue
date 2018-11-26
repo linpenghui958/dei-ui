@@ -121,7 +121,6 @@
   }
   .content-wrapper{
     position: absolute;
-    min-height:60px;
     max-width: 20em;
     border: 1px solid $border-color;
     border-radius: $border-radius;

@@ -20,6 +20,8 @@ module.exports = {
           '/components/button',
           '/components/input',
           '/components/toast',
+          '/components/popover',
+          '/components/grid',
         ]
       }
     ]
