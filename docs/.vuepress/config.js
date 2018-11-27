@@ -22,6 +22,8 @@ module.exports = {
           '/components/toast',
           '/components/popover',
           '/components/grid',
+          '/components/tab',
+          '/components/layout',
         ]
       }
     ]

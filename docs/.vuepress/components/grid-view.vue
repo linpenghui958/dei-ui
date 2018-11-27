@@ -34,6 +34,9 @@
       <d-col span="2"><div class="demo-col">col-2</div></d-col>
       <d-col span="2"><div class="demo-col">col-2</div></d-col>
     </d-row>
+    <pre>
+      <code>{{content1}}</code>
+    </pre>
 
     <div>gutter</div>
     <d-row gutter="20">
@@ -55,7 +58,11 @@
       <d-col span="4"><div class="demo-col">col-4</div></d-col>
       <d-col span="4"><div class="demo-col">col-4</div></d-col>
     </d-row>
-    
+    <pre>
+      <code>{{content2}}</code>
+    </pre>
+
+
     <div>空隙</div>
     <d-row>
       <d-col span="8">
@@ -79,6 +86,10 @@
         <div class="demo-col">4</div>
       </d-col>
     </d-row>
+    <pre>
+      <code>{{content3}}</code>
+    </pre>
+
   </div>
 </template>
 <script>
@@ -145,6 +156,30 @@ export default {
           <d-col span="4"><div class="demo-col">col-4</div></d-col>
           <d-col span="4"><div class="demo-col">col-4</div></d-col>
           <d-col span="4"><div class="demo-col">col-4</div></d-col>
+        </d-row>
+      `,
+      content3: `
+        <d-row>
+          <d-col span="8">
+            <div class="demo-col">col8</div>
+          </d-col>
+          <d-col span="8" offset="8">
+            <div class="demo-col">col8</div>
+          </d-col>
+        </d-row>
+        <d-row>
+          <d-col span="4">
+            <div class="demo-col">4</div>
+          </d-col>
+          <d-col span="4" offset="4">
+            <div class="demo-col">4</div>
+          </d-col>
+          <d-col span="4"  offset="4">
+            <div class="demo-col">4</div>
+          </d-col>
+          <d-col span="4">
+            <div class="demo-col">4</div>
+          </d-col>
         </d-row>
       `
     }

@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="d-content">
     <slot></slot>
   </div>
 </template>
@@ -9,7 +9,7 @@
   }
 </script>
 <style lang="scss">
-  .content{
+  .d-content{
     flex-grow: 1;
   }
 </style>
