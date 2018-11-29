@@ -1,6 +1,7 @@
 module.exports = {
   title: 'Dei UI',
   description: '一款清新脱俗的兄弟UI-Dei UI',
+  base: '/deiui/',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },

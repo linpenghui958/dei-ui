@@ -2,9 +2,9 @@
 sidebarDepth: 2
 ---
 # Button
-
-<button-view></button-view>
-
+<ClientOnly>
+  <button-view></button-view>
+</ClientOnly>
 
 # Button-Group
 
