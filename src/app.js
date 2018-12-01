@@ -20,6 +20,8 @@ import TabsPane from './tabs-pane'
 import Popover from './popover'
 import Collapse from './collapse'
 import CollapseItem from './collapse-item'
+import Cascader from './cascader'
+import CascaderItem from './cascader-item'
 
 Vue.component('d-button', Button)
 Vue.component('d-icon', Icon)
@@ -42,12 +44,57 @@ Vue.component('d-tabs-pane', TabsPane)
 Vue.component('d-popover', Popover)
 Vue.component('d-collapse', Collapse)
 Vue.component('d-collapse-item', CollapseItem)
+Vue.component('d-cascader', Cascader)
+Vue.component('d-cascader-item', CascaderItem)
 
 
 var app = new Vue({
   el: '#app',
   data: {
-    selectedTab: ['1']
+    selectedTab: ['1'],
+    source: [{
+      name: '浙江',
+      children: [
+        {
+          name: '杭州',
+          children: [
+            {name: '上城'},
+            {name: '下城'},
+            {name: '江干'},
+          ]
+        },
+        {
+          name: '嘉兴',
+          children: [
+            {name: '南湖'},
+            {name: '秀洲'},
+            {name: '嘉善'},
+          ]
+        },
+      ]
+    }, {
+      name: '福建',
+      children: [
+        {
+          name: '福州',
+          children: [
+            {name: '鼓楼'},
+            {name: '台江'},
+            {name: '仓山'},
+          ]
+        },
+      ]
+    }, {
+      name: '安徽',
+      children: [{
+        name: '合肥',
+        children: [{
+          name: '瑶海'
+        }, {
+          name: '庐阳'
+        }]
+      }]
+    }]
   },
   methods: {
     yyy() {
