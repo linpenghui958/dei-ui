@@ -1,26 +1,52 @@
 <template>
   <div class="cascader-item">
-    {{sourceItem.name}}
-    <dei-cascader-item class="item"
-         v-if="sourceItem.children"
-         v-for="item in sourceItem.children"
-                       :source-item="item"
-      >
-    </dei-cascader-item>
+    <div class="left">
+      <div v-for="item in source" @click="selected = item">
+        {{item.name}}
+      </div>
+    </div>
+    <div class="right">
+      <dei-cascader-item class="item"
+           v-if="selectedItem"
+           :source="selectedItem"
+        >
+      </dei-cascader-item>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
     name: 'DeiCascaderItem',
+    data() {
+      return {
+        selected: null
+      }
+    },
     props: {
-      sourceItem: [Object, Array]
+      source: [Object, Array]
+    },
+    computed: {
+      selectedItem() {
+        if (this.selected && this.selected.children) {
+          return this.selected.children
+        } else {
+          return null
+        }
+      }
     }
   }
 </script>
 <style lang="scss">
   .cascader-item{
-    border: 1px solid red;
-    margin-left: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    .left{
+      border: 1px solid red;
+    }
+    .right{
+      margin-top: -1px;
+    }
   }
 </style>
