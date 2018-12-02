@@ -1,13 +1,14 @@
 <template>
-  <div class="cascader-item">
+  <div class="cascader-item" :style="{height: height}">
     <div class="left">
-      <div v-for="item in source" @click="selected = item">
+      <div class="label" v-for="item in source" @click="leftSelected = item">
         {{item.name}}
+        <span v-if="item.children"> > </span>
       </div>
     </div>
-    <div class="right">
+    <div class="right" v-if="selectedItem">
       <dei-cascader-item class="item"
-           v-if="selectedItem"
+           :height="height"
            :source="selectedItem"
         >
       </dei-cascader-item>
@@ -20,16 +21,17 @@
     name: 'DeiCascaderItem',
     data() {
       return {
-        selected: null
+        leftSelected: null
       }
     },
     props: {
-      source: [Object, Array]
+      source: [Object, Array],
+      height: String
     },
     computed: {
       selectedItem() {
-        if (this.selected && this.selected.children) {
-          return this.selected.children
+        if (this.leftSelected && this.leftSelected.children) {
+          return this.leftSelected.children
         } else {
           return null
         }
@@ -38,15 +40,23 @@
   }
 </script>
 <style lang="scss">
+  @import "var";
   .cascader-item{
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    height: 100px;
     .left{
-      border: 1px solid red;
+      height: 100%;
+      padding: .3em 0;
+      @extend .box-shadow;
     }
     .right{
-      margin-top: -1px;
+      height: 100%;
+      border-left: 1px solid $border-color;
+    }
+    .label{
+      padding: .3em 1em;
     }
   }
 </style>
