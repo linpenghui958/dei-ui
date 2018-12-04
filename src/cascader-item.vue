@@ -3,7 +3,7 @@
     <div class="left">
       <div class="label" v-for="item in source" @click="leftSelected = item">
         {{item.name}}
-        <span v-if="item.children"> > </span>
+        <icon class="icon" v-if="item.children" name="right"></icon>
       </div>
     </div>
     <div class="right" v-if="selectedItem">
@@ -17,8 +17,12 @@
 </template>
 
 <script>
+  import Icon from './icon'
   export default {
     name: 'DeiCascaderItem',
+    components: {
+      Icon
+    },
     data() {
       return {
         leftSelected: null
@@ -57,6 +61,12 @@
     }
     .label{
       padding: .3em 1em;
+      display: flex;
+      align-items: center;
+      .icon{
+        margin-left: 1em;
+        transform: scale(.7);
+      }
     }
   }
 </style>
