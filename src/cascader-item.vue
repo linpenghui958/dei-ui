@@ -53,7 +53,6 @@
     .left{
       height: 100%;
       padding: .3em 0;
-      @extend .box-shadow;
     }
     .right{
       height: 100%;
