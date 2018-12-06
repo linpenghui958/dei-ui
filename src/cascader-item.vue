@@ -1,7 +1,7 @@
 <template>
   <div class="cascader-item" :style="{height: height}">
     <div class="left">
-      <div class="label" v-for="item in source" @click="leftSelected = item">
+      <div class="label" v-for="item in source" @click="clickHandle(item)">
         {{item.name}}
         <icon class="icon" v-if="item.children" name="right"></icon>
       </div>
@@ -9,6 +9,9 @@
     <div class="right" v-if="selectedItem">
       <dei-cascader-item class="item"
            :height="height"
+           :level="level + 1"
+                         :selected="selected"
+                         @update:selected="onUpdateSelected"
            :source="selectedItem"
         >
       </dei-cascader-item>
@@ -23,22 +26,35 @@
     components: {
       Icon
     },
-    data() {
-      return {
-        leftSelected: null
-      }
-    },
     props: {
       source: [Object, Array],
+      selected: {
+        type: Array
+      },
+      level: {
+        type: Number,
+        default: 0
+      },
       height: String
     },
     computed: {
       selectedItem() {
-        if (this.leftSelected && this.leftSelected.children) {
-          return this.leftSelected.children
+        let currentSelected = this.selected[this.level]
+        if (currentSelected && currentSelected.children) {
+          return currentSelected.children
         } else {
           return null
         }
+      }
+    },
+    methods: {
+      clickHandle(item) {
+        let copy = JSON.parse(JSON.stringify(this.selected))
+        copy[this.level] = item
+        this.$emit('update:selected', copy)
+      },
+      onUpdateSelected(arr) {
+        this.$emit('update:selected', arr)
       }
     }
   }

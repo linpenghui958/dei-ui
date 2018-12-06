@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <d-cascader :source="source" popover-height="200px"></d-cascader>
+    {{selected}}
+    <d-cascader :source="source" popover-height="200px" :selected="selected" @update:selected="selected = $event"></d-cascader>
   </div>
 </template>
 
@@ -9,6 +10,7 @@ export default {
   name: "app",
   data() {
     return {
+      selected: [],
       source: [{
         name: '浙江',
         children: [

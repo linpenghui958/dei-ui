@@ -4,7 +4,11 @@
       <slot></slot>
     </div>
     <div class="popover-wrapper" v-if="popoverVisible" :style="{height: popoverHeight}">
-      <d-cascader-item :source="source" :height="popoverHeight"></d-cascader-item>
+      <d-cascader-item :source="source"
+                       :height="popoverHeight"
+                       :selected="selected"
+                      @update:selected="handleEmit">
+      </d-cascader-item>
     </div>
 
   </div>
@@ -22,11 +26,20 @@
         type: Array,
         required: true
       },
+      selected: {
+        type: Array,
+        default: () => []
+      },
       popoverHeight: String
     },
     data() {
       return {
         popoverVisible: false
+      }
+    },
+    methods: {
+      handleEmit(selectedArr) {
+        this.$emit('update:selected', selectedArr)
       }
     }
   }
