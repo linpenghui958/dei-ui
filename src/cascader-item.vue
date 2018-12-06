@@ -51,6 +51,7 @@
       clickHandle(item) {
         let copy = JSON.parse(JSON.stringify(this.selected))
         copy[this.level] = item
+        copy.splice(this.level + 1) // 删除更新index之后的数据
         this.$emit('update:selected', copy)
       },
       onUpdateSelected(arr) {
