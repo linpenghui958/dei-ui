@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <d-cascader :source="source" popover-height="200px" :selected="selected" @update:selected="selected = $event"></d-cascader>
+    <d-cascader :source="source" popover-height="200px" :selected="selected" :selected.sync="selected"></d-cascader>
   </div>
 </template>
 
