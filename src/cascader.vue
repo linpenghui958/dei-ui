@@ -30,6 +30,7 @@
         type: Array,
         default: () => []
       },
+      loadData: Function,
       popoverHeight: String
     },
     data() {
@@ -38,8 +39,53 @@
       }
     },
     methods: {
-      handleEmit(selectedArr) {
-        this.$emit('update:selected', selectedArr)
+      handleEmit(newSelectedArr) {
+        this.$emit('update:selected', newSelectedArr)
+        let clickItem = newSelectedArr[newSelectedArr.length - 1] // 获取当前点击项，选中数组最后一项
+        let simpleFind = (children, id) => {
+          return children.filter(item => item.id === id)[0] || undefined
+        }
+        let complexFind = (children, id) => {
+          let noChildrenArr = []
+          let haxChildrenArr = []
+          let found = null
+          children.forEach(item => {
+            if (item.children) {
+              haxChildrenArr.push(item)
+            } else {
+              noChildrenArr.push(item)
+            }
+          })
+          found = simpleFind(noChildrenArr, id)
+          if (found) {
+            return found
+          }
+          else {
+            found = simpleFind(haxChildrenArr, id)
+            if (found) return found
+            let length = haxChildrenArr.length
+            for (let i = 0; i < length; i++) {
+              found = complexFind(haxChildrenArr[i].children, id)
+              if (found) return found
+            }
+            return undefined
+          }
+        }
+        /**
+         * 更新回调
+         * @param result 需要添加到children的数组
+         */
+        let updateSource = result => {
+          // let uploadTarget = this.source.filter(item => item.id === clickItem.id)[0]
+          let copySource = JSON.parse(JSON.stringify(this.source))
+          let uploadTarget = complexFind(copySource, clickItem.id)
+          uploadTarget.children = result
+          console.log(uploadTarget)
+          this.$emit('update:source', copySource)
+
+        }
+        // 执行用户传进的回调，并将更新函数传出
+        this.loadData(clickItem, updateSource)
       }
     },
     computed: {

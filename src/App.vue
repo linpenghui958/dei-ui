@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <d-cascader :source="source" popover-height="200px"
-                @update:selected="xxx"
+    <d-cascader :source.sync="source" popover-height="200px"
                 :selected="selected"
+                :load-data="xxx"
                 :selected.sync="selected"></d-cascader>
   </div>
 </template>
@@ -14,7 +14,7 @@
       let result = dbjson.filter(item => {if (item.parent_id === parentId)return {name: item.name, parentId: item.parentId}})
       setTimeout(() => {
         resolve(result)
-      }, 2000)
+      }, 300)
     })
   }
 export default {
@@ -27,15 +27,14 @@ export default {
   },
   created() {
     ajax().then(res => {
-      console.log(res)
       this.source = res
     })
   },
   methods: {
-    xxx() {
-      ajax(1).then(res => {
-        let target = this.source.filter(item => item.id === 1)[0]
-        this.$set(target, 'children', res)
+    xxx(item, updateSource) {
+      let id = item.id
+      ajax(id).then(res => {
+        updateSource(res)
       })
     }
   }
