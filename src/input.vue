@@ -41,24 +41,14 @@
 </script>
 
 <style lang="scss" scoped>
-  /*:root{*/
-    /*--button-height: 32px;*/
-    /*--font-size: 14px;*/
-    /*--butotn-bg: white;*/
-    /*--button-active-bg: #eee;*/
-    /*--border-radius: 4px;*/
-    /*--color: #333;*/
-    /*--border-color: #999;*/
-    /*--border-hover-color: #666;*/
 
-  /*}*/
   $height: 32px;
   $border-radius: 4px;
-  $border-color: #999;
-  $border-color-hover: #666;
+  $border-color: #E0E0E0;
+  $border-color-hover: #54C3F6;
   $font-size: 12px;
   $box-shadow-color: rgba(0,0,0,0.5);
-  $red: #f1435d;
+  $red: #F13636;
 .wrapper{
   font-size: $font-size;
   display: inline-flex;

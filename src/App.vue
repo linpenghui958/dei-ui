@@ -4,6 +4,8 @@
                 :selected="selected"
                 :load-data="xxx"
                 :selected.sync="selected"></d-cascader>
+    <d-button>按钮</d-button>
+    <d-input error="错误"></d-input>
   </div>
 </template>
 
