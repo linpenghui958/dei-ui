@@ -1,7 +1,9 @@
 <template>
   <div class="cascader-item" :style="{height: height}">
     <div class="left">
-      <div class="label" v-for="item in source" @click="clickHandle(item)">
+      <div class="label" v-for="(item, index) in source" 
+                        :key="index" 
+                        @click="clickHandle(item)">
         {{item.name}}
         <icon class="icon" v-if="item.children" name="right"></icon>
       </div>
@@ -49,6 +51,7 @@
     },
     methods: {
       clickHandle(item) {
+        debugger
         let copy = JSON.parse(JSON.stringify(this.selected))
         copy[this.level] = item
         copy.splice(this.level + 1) // 删除更新index之后的数据
