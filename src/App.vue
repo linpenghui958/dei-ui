@@ -1,58 +1,52 @@
 <template>
   <div id="app">
-    <d-cascader :source.sync="source" popover-height="200px"
-                :selected="selected"
-                :load-data="xxx"
-                :selected.sync="selected"></d-cascader>
-    <!-- <d-button>按钮</d-button>
-    <d-input error="错误"></d-input> -->
-    <d-popover position="right">
-      <div slot="content">展示内容</div>
-      <d-button>点我</d-button>
-    </d-popover>
+    <d-slides width="300" height="200" :selected="selected">
+      <d-slides-item name="1">
+        <div class="box">1</div>
+      </d-slides-item>
+      <d-slides-item name="2">
+        <div class="box">2</div>
+      </d-slides-item>
+      <d-slides-item name="3">
+        <div class="box">3</div>
+      </d-slides-item>
+    </d-slides>
   </div>
 </template>
 
 <script>
-  import dbjson from './db'
-  function ajax(parentId = 0) {
-    return new Promise((resolve, reject) => {
-      let result = dbjson.filter(item => {if (item.parent_id === parentId)return {name: item.name, parentId: item.parentId}})
-      setTimeout(() => {
-        resolve(result)
-      }, 300)
-    })
-  }
+  // import dbjson from './db'
+  // function ajax(parentId = 0) {
+  //   return new Promise((resolve, reject) => {
+  //     let result = dbjson.filter(item => {if (item.parent_id === parentId)return {name: item.name, parentId: item.parentId}})
+  //     setTimeout(() => {
+  //       resolve(result)
+  //     }, 300)
+  //   })
+  // }
 export default {
   name: "app",
   data() {
     return {
-      selected: [],
-      source: []
+      selected: "1"
     };
   },
-  created() {
-    ajax().then(res => {
-      this.source = res
-    })
-  },
-  methods: {
-    xxx(item, updateSource) {
-      let id = item.id
-      ajax(id).then(res => {
-        updateSource(res)
-      })
-    }
+  mounted() {
+    let n = 2
+    setInterval(() => {
+      if (n === 4) n = 1;
+      this.selected = n.toString()
+      n++
+    }, 3000)
   }
 };
 </script>
 <style>
   * {margin: 0; padding: 0; box-sizing: border-box;}
-  img {max-width: 100%;}
-  html {
-    --font-size: 14px;
-  }
-  body {
-    font-size: var(--font-size);
+  html, body, #app{width: 100%;height: 100%;  }
+  .box{
+    width: 300px;
+    height: 200px;
+    background-color: gray;
   }
 </style>

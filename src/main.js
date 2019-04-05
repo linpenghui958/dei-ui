@@ -23,6 +23,8 @@ import Collapse from './collapse'
 import CollapseItem from './collapse-item'
 import Cascader from './cascader'
 import CascaderItem from './cascader-item'
+import Slides from './slides/slides'
+import SlidesItem from './slides/slides-item'
 
 Vue.component('d-button', Button)
 Vue.component('d-icon', Icon)
@@ -47,6 +49,8 @@ Vue.component('d-collapse', Collapse)
 Vue.component('d-collapse-item', CollapseItem)
 Vue.component('d-cascader', Cascader)
 Vue.component('d-cascader-item', CascaderItem)
+Vue.component('d-slides', Slides)
+Vue.component('d-slides-item', SlidesItem)
 
 Vue.config.productionTip = false;
 
