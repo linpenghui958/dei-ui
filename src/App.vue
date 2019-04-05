@@ -6,6 +6,10 @@
                 :selected.sync="selected"></d-cascader>
     <!-- <d-button>按钮</d-button>
     <d-input error="错误"></d-input> -->
+    <d-popover position="right">
+      <div slot="content">展示内容</div>
+      <d-button>点我</d-button>
+    </d-popover>
   </div>
 </template>
 

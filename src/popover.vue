@@ -38,7 +38,6 @@
     },
     mounted() {
       if (this.trigger === 'click') {
-        console.log(this.$refs.popover, 'bind click')
         this.$refs.popover.addEventListener('click', this.click)
       } else {
         this.$refs.popover.addEventListener('mouseenter', this.open)
@@ -86,7 +85,6 @@
           this.close()
       },
       close() {
-        console.log('close')
         this.visible = false
         document.removeEventListener('click', this.clickDocument)
       },
@@ -98,7 +96,6 @@
         })
       },
       click (event) {
-        console.log('click button')
         if (this.$refs.triggerWrapper.contains(event.target)) {
           if (this.visible === true ) {
             this.close()
