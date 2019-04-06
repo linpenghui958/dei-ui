@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <d-slides width="300" height="200" :selected="selected">
-      <d-slides-item name="1">
+    <d-slides width="300" height="200" :selected.sync="selected" :reverse="true">
+      <d-slides-item name="111">
         <div class="box">1</div>
       </d-slides-item>
-      <d-slides-item name="2">
+      <d-slides-item name="222">
         <div class="box">2</div>
       </d-slides-item>
-      <d-slides-item name="3">
+      <d-slides-item name="333">
         <div class="box">3</div>
       </d-slides-item>
     </d-slides>
@@ -28,17 +28,9 @@ export default {
   name: "app",
   data() {
     return {
-      selected: "1"
+      selected: "333"
     };
   },
-  mounted() {
-    let n = 2
-    setInterval(() => {
-      if (n === 4) n = 1;
-      this.selected = n.toString()
-      n++
-    }, 3000)
-  }
 };
 </script>
 <style>
