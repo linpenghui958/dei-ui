@@ -1,6 +1,8 @@
 <template>
   <div class="g-slides" @mouseenter="onMouseEnter"
-                        @mouseleave="onMouseLeave">
+                        @mouseleave="onMouseLeave"
+                        @touchstart="onTouchStart"
+                        @touchend="onTouchEnd">
     <div class="g-slides-window">
       <div class="g-slides-wrapper">
         <slot></slot>
@@ -35,7 +37,8 @@ export default {
     return {
       childLength: 0,
       lastSelectedIndex: undefined,
-      timerId: undefined
+      timerId: undefined,
+      touchStart: undefined
     }
   },
   mounted() {
@@ -55,6 +58,29 @@ export default {
     }
   },
   methods: {
+    onTouchStart(e) {
+      this.touchStart = e.touches[0]
+      this.pause()
+    },  
+    onTouchEnd(e) {
+      const {clientX: x1, clientY: y1} = this.touchStart
+      const {clientX: x2, clientY: y2} = e.changedTouches[0]
+      const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
+      const dealtY = Math.abs(y2 - y1)
+      const rotate = distance / dealtY
+      if (rotate > 2) {
+        if (x2 > x1) {
+          console.log('向左')
+          this.select(this.selectedIndex - 1)
+        } else {
+          console.log('向右')
+          this.select(this.selectedIndex + 1)
+        }
+      }
+      this.$nextTick(() => {
+        this.autoPlay()
+      })
+    },
     onMouseEnter() {
       this.pause()
     },
@@ -67,8 +93,6 @@ export default {
     },
     select(index) {
       this.lastSelectedIndex = this.selectedIndex
-      console.log('lastIndex', this.lastSelectedIndex)
-      console.log('newIndex', index)
       this.$emit('update:selected', this.names[index])
     },
     autoPlay() {
