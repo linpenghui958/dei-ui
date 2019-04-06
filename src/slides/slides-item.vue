@@ -26,10 +26,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.g-slides-item{
+  width: 100%;
+  height: 100%;
+}
 .slide-leave-active{
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
 }
 .slide-enter-active, .slide-leave-active{
   transition: all 1s ease;

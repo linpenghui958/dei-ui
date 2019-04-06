@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <d-slides width="300" height="200" :selected.sync="selected" :reverse="true">
+    <d-slides class="slider" :selected.sync="selected">
       <d-slides-item name="111">
         <div class="box">1</div>
       </d-slides-item>
@@ -36,8 +36,12 @@ export default {
 <style>
   * {margin: 0; padding: 0; box-sizing: border-box;}
   html, body, #app{width: 100%;height: 100%;  }
+  .slider{
+    display: block;
+    margin: 30px;
+  }
   .box{
-    width: 300px;
+    width: 100%;
     height: 200px;
     background-color: gray;
   }
