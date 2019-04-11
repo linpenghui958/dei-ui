@@ -1,4 +1,4 @@
-import {expect} from 'chai'
+import chai, {expect} from 'chai'
 import {shaloowMount, mount} from '@vue/test-utils'
 import Collapse from '../../src/collapse'
 import CollapseItem from '../../src/collapse-item'

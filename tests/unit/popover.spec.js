@@ -1,4 +1,4 @@
-import {expect} from 'chai'
+import chai, {expect} from 'chai'
 import {shaloowMount, mount} from '@vue/test-utils'
 import Popover from '@/popover'
 

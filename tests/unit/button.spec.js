@@ -1,4 +1,4 @@
-import {expect} from 'chai'
+import chai, {expect} from 'chai'
 import {shaloowMount, mount} from '@vue/test-utils'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
@@ -9,15 +9,6 @@ describe('Button', () => {
     expect(Button).to.exist
   })
   it('可以设置icon.', () => {
-    // const Constructor = Vue.extend(Button)
-    // const vm = new Constructor({
-    //   propsData: {
-    //     icon: 'settings'
-    //   }
-    // }).$mount()
-    // const useElement = vm.$el.querySelector('use')
-    // expect(useElement.getAttribute('xlink:href')).to.equal('#i-settings')
-    // vm.$destroy()
     const wrapper = mount(Button, {
       propsData: {
         icon: 'settings'
