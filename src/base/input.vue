@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import Icon from './icon'
+  import Icon from '../base/icon'
   export default {
     name: 'DeiInput',
     components: {

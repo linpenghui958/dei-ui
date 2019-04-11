@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import Icon from './icon'
+  import Icon from '../base/icon'
   export default {
     name: 'DeiCascaderItem',
     components: {
@@ -64,7 +64,7 @@
   }
 </script>
 <style lang="scss">
-  @import "var";
+  @import "../var";
   .cascader-item{
     display: flex;
     align-items: flex-start;

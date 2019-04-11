@@ -1,7 +1,7 @@
 import chai, {expect} from 'chai'
 import {shaloowMount, mount} from '@vue/test-utils'
-import Collapse from '../../src/collapse'
-import CollapseItem from '../../src/collapse-item'
+import Collapse from '@/collapse/collapse'
+import CollapseItem from '@/collapse/collapse-item'
 
 describe('Collapse', () => {
   it('存在', () => {

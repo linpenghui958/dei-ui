@@ -1,7 +1,7 @@
 import chai, {expect} from 'chai'
 import {shaloowMount, mount} from '@vue/test-utils'
-import Row from '@/row'
-import Col from '@/col'
+import Row from '@/grid/row'
+import Col from '@/grid/col'
 
 describe('Col', () => {
   it('存在', () => {

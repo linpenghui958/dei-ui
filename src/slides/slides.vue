@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Icon from '../icon'
+import Icon from '../base/icon'
 export default {
   components: {
     'd-icon': Icon
