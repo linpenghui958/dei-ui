@@ -64,7 +64,7 @@
   }
 </script>
 <style lang="scss">
-  @import "../var";
+  @import "../styles/_var";
   .cascader-item{
     display: flex;
     align-items: flex-start;

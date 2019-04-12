@@ -96,7 +96,7 @@
   }
 </script>
 <style lang="scss">
-  @import "../var";
+  @import "_var";
 .cascader{
   position: relative;
   .trigger{
