@@ -1,34 +1,25 @@
 <template>
   <div id="app">
-    <d-slides class="slider" :selected.sync="selected">
-      <d-slides-item name="111">
-        <div class="box">1</div>
-      </d-slides-item>
-      <d-slides-item name="222">
-        <div class="box">2</div>
-      </d-slides-item>
-      <d-slides-item name="333">
-        <div class="box">3</div>
-      </d-slides-item>
-    </d-slides>
+    <d-nav :selected.sync="selected" :multiple="false">
+      <d-nav-item name="home">首页</d-nav-item>
+      <d-nav-item name="about">关于</d-nav-item>
+      <d-nav-item name="mine">我的</d-nav-item>
+    </d-nav>
   </div>
 </template>
 
 <script>
-  // import dbjson from './db'
-  // function ajax(parentId = 0) {
-  //   return new Promise((resolve, reject) => {
-  //     let result = dbjson.filter(item => {if (item.parent_id === parentId)return {name: item.name, parentId: item.parentId}})
-  //     setTimeout(() => {
-  //       resolve(result)
-  //     }, 300)
-  //   })
-  // }
+import DNav from '@/nav/nav'
+import DNavItem from '@/nav/nav-item'
+import DSubNav from '@/nav/sub-nav'
 export default {
   name: "app",
+  components: {
+    DNav, DNavItem, DSubNav
+  },
   data() {
     return {
-      selected: "333"
+      selected: ['home']
     };
   },
 };
