@@ -7,6 +7,16 @@
 <script>
 export default {
   name: 'DeiNav',
+  provide() {
+    return {
+      root: this
+    }
+  },
+  data() {
+    return {
+      items: []
+    }
+  },
   props: {
     selected: {
       type: Array,
@@ -24,12 +34,10 @@ export default {
   updated() {
     this.updateChildren()
   },
-  computed: {
-    items() {
-      return this.$children.filter(vm => vm.$options.name === 'DeiNavItem')
-    }
-  },
   methods: {
+    addItems(vm) {
+      this.items.push(vm)
+    },
     updateChildren() {
       this.items.forEach(vm => {
         if (this.selected.includes(vm.name)) {
@@ -41,11 +49,16 @@ export default {
     },
     listenToChildren() {
       this.items.forEach(vm => {
-        if (this.selected.includes(vm.name)) {
-          vm.selected = true
-        } else {
-          vm.selected = false
-        }
+        vm.$on('add:selected', (name) => {
+          if(this.mutiple) {
+            const copy = JSON.parse(JSON.stringify(this.selected))
+            copy.push(name)
+            this.$emit('update:selected', copy)
+          } else {
+            this.$emit('update:selected', [name])
+          }
+        })
+        
       })
     }
   }

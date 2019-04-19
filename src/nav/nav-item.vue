@@ -13,6 +13,10 @@ export default {
       required: true
     }
   },
+  inject: ['root'],
+  mounted() {
+    this.root.addItems(this)
+  },
   data() {
     return {
       selected: false

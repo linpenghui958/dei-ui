@@ -2,7 +2,12 @@
   <div id="app">
     <d-nav :selected.sync="selected" :multiple="false">
       <d-nav-item name="home">首页</d-nav-item>
-      <d-nav-item name="about">关于</d-nav-item>
+      <d-sub-nav>
+        <template slot="title">关于</template> 
+        <d-nav-item name="company">企业</d-nav-item>
+        <d-nav-item name="culture">文化</d-nav-item>
+        <d-nav-item name="hire">招聘</d-nav-item>
+      </d-sub-nav>
       <d-nav-item name="mine">我的</d-nav-item>
     </d-nav>
   </div>
@@ -19,7 +24,7 @@ export default {
   },
   data() {
     return {
-      selected: ['home']
+      selected: ['hire']
     };
   },
 };
