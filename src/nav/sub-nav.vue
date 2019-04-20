@@ -1,7 +1,9 @@
 <template>
   <div class="d-sub-nav">
-    <slot name="title" class=""></slot>
-    <div class="d-sub-nav-popover">
+    <span class="d-sub-nav-label" @click="onClick">
+      <slot name="title" class=""></slot>
+    </span>
+    <div class="d-sub-nav-popover" v-show="open">
       <slot></slot>
     </div>
   </div>
@@ -9,7 +11,17 @@
 
 <script>
 export default {
-  name: 'DeiSubNav'
+  name: 'DeiSubNav',
+  data() {
+    return {
+      open: false
+    }
+  },
+  methods: {
+    onClick() {
+      this.open = !this.open
+    }
+  }
 
 }
 </script>
@@ -54,23 +66,23 @@ export default {
       }
     }
   }
-  .g-sub-nav .g-sub-nav {
+  .d-sub-nav .d-sub-nav {
     &.active {
       &::after {
         display: none;
       }
     }
-    .g-sub-nav-popover {
+    .d-sub-nav-popover {
     top: 0;
     left: 100%;
     margin-left: 8px;
     }
-    .g-sub-nav-label {
+    .d-sub-nav-label {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .g-sub-nav-icon {
+    .d-sub-nav-icon {
       transition: transform 250ms;
       display: inline-flex; margin-left: 1em;
       svg {fill: $light-color;}
