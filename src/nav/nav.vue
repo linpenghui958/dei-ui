@@ -1,6 +1,5 @@
 <template>
   <div class="d-nav" >
-    {{namePath}}
     <slot></slot>
   </div>
 </template>

@@ -2,6 +2,9 @@
   <div class="d-sub-nav" :class="{active}" v-click-outside="close">
     <span class="d-sub-nav-label" @click="onClick">
       <slot name="title" class=""></slot>
+      <span class="d-sub-nav-icon" :class="{open}">
+        <d-icon name="right"></d-icon>
+      </span>
     </span>
     <div class="d-sub-nav-popover" v-show="open">
       <slot></slot>
@@ -10,11 +13,15 @@
 </template>
 
 <script>
-import ClickOutside from '../click-outside' 
+import ClickOutside from '../click-outside'
+import DIcon from '../base/icon'
 export default {
   directives: {ClickOutside},
   name: 'DeiSubNav',
   inject: ['root'],
+  components: {
+    DIcon
+  },
   props: {
     name: {
       type: String
@@ -92,11 +99,11 @@ export default {
     }
   }
   .d-sub-nav .d-sub-nav {
-    // &.active {
-    //   &::after {
-    //     display: none;
-    //   }
-    // }
+    &.active {
+      &::after {
+        display: none;
+      }
+    }
     .d-sub-nav-popover {
     top: 0;
     left: 100%;
