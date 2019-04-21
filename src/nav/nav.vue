@@ -1,5 +1,6 @@
 <template>
   <div class="d-nav" >
+    {{namePath}}
     <slot></slot>
   </div>
 </template>
@@ -14,7 +15,8 @@ export default {
   },
   data() {
     return {
-      items: []
+      items: [],
+      namePath: []
     }
   },
   props: {

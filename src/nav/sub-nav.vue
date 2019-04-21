@@ -1,5 +1,5 @@
 <template>
-  <div class="d-sub-nav">
+  <div class="d-sub-nav" :class="{active}" v-click-outside="close">
     <span class="d-sub-nav-label" @click="onClick">
       <slot name="title" class=""></slot>
     </span>
@@ -10,16 +10,41 @@
 </template>
 
 <script>
+import ClickOutside from '../click-outside' 
 export default {
+  directives: {ClickOutside},
   name: 'DeiSubNav',
+  inject: ['root'],
+  props: {
+    name: {
+      type: String
+    }
+  },
   data() {
     return {
-      open: false
+      open: false,
+    }
+  },
+  computed: {
+    active() {
+      return this.root.namePath.indexOf(this.name) >= 0 ? true : false;
     }
   },
   methods: {
     onClick() {
-      this.open = !this.open
+      this.open = true
+    },
+    close() {
+      this.open = false
+    },
+    updateNamePath() {
+      this.root.namePath.unshift(this.name)
+      if(this.$parent.updateNamePath) {
+        console.log(this.name)
+        this.$parent.updateNamePath()
+      } else {
+        // this.root.namePath = []
+      }
     }
   }
 
@@ -67,11 +92,11 @@ export default {
     }
   }
   .d-sub-nav .d-sub-nav {
-    &.active {
-      &::after {
-        display: none;
-      }
-    }
+    // &.active {
+    //   &::after {
+    //     display: none;
+    //   }
+    // }
     .d-sub-nav-popover {
     top: 0;
     left: 100%;
