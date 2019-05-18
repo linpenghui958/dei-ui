@@ -6,11 +6,20 @@
         <d-icon name="right"></d-icon>
       </span>
     </span>
-    <transition @enter="enter" @leave="leave" @after-leave="afterLeave" @after-enter="afterEnter">
-      <div class="d-sub-nav-popover" :class={vertical} v-show="open">
-        <slot></slot>
-      </div>
-    </transition>
+    <template v-if="vertical">
+      <transition @enter="enter" @leave="leave" @after-leave="afterLeave" @after-enter="afterEnter">
+        <div class="d-sub-nav-popover" :class={vertical} v-show="open">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
+      <transition>
+        <div class="d-sub-nav-popover" v-show="open">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
   </div>
 </template>
 
