@@ -6,9 +6,11 @@
         <d-icon name="right"></d-icon>
       </span>
     </span>
-    <div class="d-sub-nav-popover" v-show="open">
-      <slot></slot>
-    </div>
+    <transition @enter="enter" @leave="leave" @after-leave="afterLeave" @after-enter="afterEnter">
+      <div class="d-sub-nav-popover" :class={vertical} v-show="open">
+        <slot></slot>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -18,7 +20,7 @@ import DIcon from '../base/icon'
 export default {
   directives: {ClickOutside},
   name: 'DeiSubNav',
-  inject: ['root'],
+  inject: ['root', 'vertical'],
   components: {
     DIcon
   },
@@ -38,8 +40,32 @@ export default {
     }
   },
   methods: {
+    enter(el, done) {
+      const { height } = el.getBoundingClientRect();
+      el.style.height = 0
+      el.getBoundingClientRect()
+      el.style.height = height + 'px'
+      el.addEventListener('transitionend', () => {
+        done()
+      })
+    },
+    afterEnter(el) {
+      el.style.height = 'auto'
+    },
+    leave(el, done) {
+      const { height } = el.getBoundingClientRect()
+      el.style.height = height + 'px'
+      el.getBoundingClientRect()
+      el.style.height = 0
+      el.addEventListener('transitionend', () => {
+        done()
+      })
+    },
+    afterLeave(el) {
+      el.style.height = 'auto'
+    },
     onClick() {
-      this.open = true
+      this.open = !this.open
     },
     close() {
       this.open = false
@@ -95,6 +121,7 @@ export default {
         border: none;
         box-shadow: none;
         overflow: hidden;
+        transition: height 250ms;
       }
     }
   }

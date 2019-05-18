@@ -1,5 +1,5 @@
 <template>
-  <div class="d-nav" >
+  <div class="d-nav" :class={vertical}>
     <slot></slot>
   </div>
 </template>
@@ -9,7 +9,8 @@ export default {
   name: 'DeiNav',
   provide() {
     return {
-      root: this
+      root: this,
+      vertical: this.vertical
     }
   },
   data() {
@@ -24,6 +25,10 @@ export default {
       required: true
     },
     mutiple: {
+      type: Boolean,
+      default: false
+    },
+    vertical: {
       type: Boolean,
       default: false
     }

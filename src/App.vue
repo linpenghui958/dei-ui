@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <d-nav :selected.sync="selected" :multiple="false">
+    <d-nav :selected.sync="selected" :multiple="false" style="width: 200px" vertical>
       <d-nav-item name="home">首页</d-nav-item>
       <d-sub-nav name="about">
         <template slot="title" >关于</template> 
