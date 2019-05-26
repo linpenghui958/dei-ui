@@ -6,6 +6,7 @@ import NavItem from '@/nav/nav-item'
 import SubNav from '@/nav/sub-nav'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
+chai.use(sinonChai)
 
 describe('Nav', () => {
   it('存在.', () => {
