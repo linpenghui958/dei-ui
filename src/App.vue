@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <g-pager :currentPage="2" :totalPage="50"></g-pager>
+    <g-pager :totalPage="50" :current-page.sync="currentPage"></g-pager>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      selected: ''
+      currentPage: 1
     };
   },
 };

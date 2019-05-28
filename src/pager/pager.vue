@@ -1,5 +1,5 @@
 <template>
-   <div class="dei-pager" :class="{hide: hideIfOnePage === true && totalPage <= 1}">
+   <div class="dei-pager">
     <span class="dei-pager-nav prev" :class="{disabled:currentPage===1}"
       @click="onClickPage(currentPage-1)">
       <d-icon name="left"></d-icon>
@@ -13,7 +13,7 @@
         <span>...</span>
       </template>
       <template v-else>
-        <span class="dei-pager-item other">{{page}}</span>
+        <span class="dei-pager-item other" @click="onClickPage(page)">{{page}}</span>
       </template>
     </template>
     <span class="dei-pager-nav next" :class="{disabled: currentPage===totalPage}"
@@ -40,18 +40,25 @@ export default {
       required: true
     },
   },
-  data() {
-    let pages = [1, this.currentPage, this.totalPage, this.currentPage - 1, this.currentPage - 2, this.currentPage + 1, this.currentPage + 2]
-    pages = unique(pages.sort((a,b) => a-b).filter(i => i > 0))
-    console.log(pages)
-    let result = pages.reduce((prev, current, idx) => {
-      const nextValue = pages[idx + 1]
-      prev.push(current)
-      nextValue !== undefined && nextValue - current > 1 && prev.push('...')
-      return prev
-    }, [])
-    return {
-      pages: result
+  computed: {
+    pages() {
+      let pages = [1, this.currentPage, this.totalPage, this.currentPage - 1, this.currentPage - 2, this.currentPage + 1, this.currentPage + 2]
+      pages = unique(pages.sort((a,b) => a-b).filter(i => i > 0 && i <= this.totalPage))
+      console.log(pages)
+      let result = pages.reduce((prev, current, idx) => {
+        const nextValue = pages[idx + 1]
+        prev.push(current)
+        nextValue !== undefined && nextValue - current > 1 && prev.push('...')
+        return prev
+      }, [])
+      return result
+    }
+  },
+  methods: {
+    onClickPage(n) {
+      if (n >= 1 && n <= this.totalPage) {
+        this.$emit('update:currentPage', n)
+      }
     }
   }
 }
