@@ -1,7 +1,8 @@
 <template>
   <div id="app">
+    {{items}}
     <div style="margin: 20px;">
-      <g-table :columns="columns" :data-source="dataSource"></g-table>
+      <g-table :columns="columns" :data-source="dataSource" @changeItem="x" checkable :selectedItems.sync="items" :order-by.sync="orderBy"></g-table>
     </div>
     <div style="margin: 20px;">
       <g-pager :totalPage="50" :current-page.sync="currentPage"></g-pager>
@@ -28,9 +29,21 @@ export default {
       dataSource: [
         { id: 1, name: 'linph', score: 100},
         { id: 2, name: 'lee', score: 60},
-      ]
+        { id: 3, name: 'mack', score: 60},
+        { id: 4, name: 'leo', score: 60},
+        { id: 5, name: 'harry', score: 60},
+        { id: 6, name: 'steve', score: 60},
+      ],
+      items: [],
+      orderBy: {
+        score: 'desc',
+      }
     };
   },
+  methods: {
+    x(checked, item, index) {
+    }
+  }
 };
 </script>
 <style>
