@@ -2,7 +2,7 @@
   <div id="app">
     {{items}}
     <div style="margin: 20px;">
-      <g-table :columns="columns" :data-source="dataSource" @changeItem="x" checkable :selectedItems.sync="items" :order-by.sync="orderBy"></g-table>
+      <g-table :columns="columns" :data-source="dataSource" @changeItem="x" checkable compact bordered striped :selectedItems.sync="items" :order-by.sync="orderBy" :height="'400px'"></g-table>
     </div>
     <div style="margin: 20px;">
       <g-pager :totalPage="50" :current-page.sync="currentPage"></g-pager>
@@ -33,6 +33,17 @@ export default {
         { id: 4, name: 'leo', score: 60},
         { id: 5, name: 'harry', score: 60},
         { id: 6, name: 'steve', score: 60},
+        { id: 7, name: 'steve', score: 60},
+        { id: 8, name: 'leo', score: 60},
+        { id: 9, name: 'steve', score: 60},
+        { id: 10, name: 'steve', score: 60},
+        { id: 11, name: 'linph', score: 60},
+        { id: 12, name: 'steve', score: 60},
+        { id: 13, name: 'matin', score: 60},
+        { id: 14, name: 'steve', score: 60},
+        { id: 15, name: 'kevin', score: 60},
+        { id: 16, name: 'steve', score: 60},
+        { id: 17, name: 'steve', score: 60},
       ],
       items: [],
       orderBy: {

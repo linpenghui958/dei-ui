@@ -1,36 +1,38 @@
 <template>
   <div class="dei-table-wrapper" ref="wrapper">
-    <table class="dei-table" ref="table" :class="{bordered, compact, striped: striped}">
-      <thead>
-        <tr>
-          <th v-if="numberVisible">#</th>
-          <th v-if="checkable" :style="{width: '50px'}" class="gulu-table-center">
-            <input type="checkbox" @change="onChangeAllItems" ref="allChecked" :checked="areAllItemsSelected"/>
-          </th>
-          <th v-for="(column, index) in columns" :key="index">
-            <div class="dei-table-header">
-              {{column.text}} 
-              <span class="dei-table-sorter" v-if="column.field in orderBy" @click="changeOrderBy(column.field)">
-                <d-icon name="asc" :class="{active: orderBy[column.field] === 'asc'}"></d-icon>
-                <d-icon name="desc" :class="{active: orderBy[column.field] === 'desc'}"></d-icon>
-              </span>
-            </div>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, index) in dataSource" :key="index">
-          <td v-if="checkable" :style="{width: '50px'}" class="gulu-table-center">
-            <input type="checkbox" @change="onChangeItem(item, index, $event)"
-              :checked="inSelectedItems(item)"/>
-          </td>
-          <td v-if="numberVisible">{{index + 1}}</td>
-          <template v-for="(column, index) in columns">
-            <td :key="index">{{item[column.field]}}</td>
-          </template>
-        </tr>
-      </tbody>
-    </table>
+    <div :style="{height, overflow: 'auto'}">
+      <table class="dei-table" ref="table" :class="{bordered, compact, striped: striped}">
+        <thead>
+          <tr>
+            <th v-if="numberVisible" :style="{width: '50px'}">#</th>
+            <th v-if="checkable" :style="{width: '50px'}" class="dei-table-center">
+              <input type="checkbox" @change="onChangeAllItems" ref="allChecked" :checked="areAllItemsSelected"/>
+            </th>
+            <th v-for="(column, index) in columns" :key="index" class="dei-table-center">
+              <div class="dei-table-header">
+                {{column.text}} 
+                <span class="dei-table-sorter" v-if="column.field in orderBy" @click="changeOrderBy(column.field)">
+                  <d-icon name="asc" :class="{active: orderBy[column.field] === 'asc'}"></d-icon>
+                  <d-icon name="desc" :class="{active: orderBy[column.field] === 'desc'}"></d-icon>
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in dataSource" :key="index">
+            <td v-if="checkable" :style="{width: '50px'}" class="dei-table-center">
+              <input type="checkbox" @change="onChangeItem(item, index, $event)"
+                :checked="inSelectedItems(item)"/>
+            </td>
+            <td v-if="numberVisible">{{index + 1}}</td>
+            <template v-for="(column, index) in columns">
+              <td :key="index">{{item[column.field]}}</td>
+            </template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -41,6 +43,9 @@ export default {
     DIcon
   },
   props: {
+    height: {
+      type: [Number, String]
+    },
     columns: {
       type: Array,
       required: true
@@ -78,6 +83,24 @@ export default {
       default: () => []
     }
   },
+  mounted() {
+    const copy = this.$refs.table.cloneNode(true)
+    this.copy = copy
+    copy.classList.add('dei-table-copy')
+    Array.from(copy.children).map(node => {
+      if (node.tagName.toLowerCase() !== 'thead') {
+        node.remove()
+      }
+    })
+    this.$refs.wrapper.appendChild(copy)
+    this.updateHeadersWidth()
+    this.onWinodwResize = () => this.updateHeadersWidth()
+    window.addEventListener('resize', this.onWinodwResize)
+  },
+  beforeDestroy() {
+    this.copy.remove()
+    window.removeEventListener('resize', this.onWinodwResize)
+  },
   computed: {
     areAllItemsSelected() {
       const a = this.selectedItems.map(i => i.id).sort()
@@ -93,6 +116,12 @@ export default {
     }
   },
   methods: {
+    updateHeadersWidth() {
+      Array.from(this.$refs.table.querySelector('thead').children[0].children).map((node, i) => {
+        const { width } = node.getBoundingClientRect();
+        this.copy.querySelector('thead').children[0].children[i].width = width + 'px';
+      })
+    },
     changeOrderBy(key) {
       const copy = JSON.parse(JSON.stringify(this.orderBy))
       console.log(copy[key])
