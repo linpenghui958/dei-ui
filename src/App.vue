@@ -2,7 +2,7 @@
   <div id="app">
     {{items}}
     <div style="margin: 20px;">
-      <g-table :columns="columns" :data-source="dataSource" @changeItem="x" checkable compact bordered striped :selectedItems.sync="items" :order-by.sync="orderBy" :height="'400px'"></g-table>
+      <g-table :columns="columns" :data-source="dataSource" @changeItem="x" checkable compact bordered striped :selectedItems.sync="items" :order-by.sync="orderBy" :height="400"></g-table>
     </div>
     <div style="margin: 20px;">
       <g-pager :totalPage="50" :current-page.sync="currentPage"></g-pager>
@@ -23,7 +23,7 @@ export default {
     return {
       currentPage: 1,
       columns: [
-        { text: '姓名', field: 'name'},
+        { text: '姓名', field: 'name', width: 100 },
         { text: '分数', field: 'score'},
       ],
       dataSource: [

@@ -1,6 +1,6 @@
 <template>
   <div class="dei-table-wrapper" ref="wrapper">
-    <div :style="{height, overflow: 'auto'}">
+    <div :style="{height, overflow: 'auto'}" ref="tableWrapper">
       <table class="dei-table" ref="table" :class="{bordered, compact, striped: striped}">
         <thead>
           <tr>
@@ -8,7 +8,7 @@
             <th v-if="checkable" :style="{width: '50px'}" class="dei-table-center">
               <input type="checkbox" @change="onChangeAllItems" ref="allChecked" :checked="areAllItemsSelected"/>
             </th>
-            <th v-for="(column, index) in columns" :key="index" class="dei-table-center">
+            <th :style="{width: column.width + 'px'}" v-for="(column, index) in columns" :key="index" class="dei-table-center">
               <div class="dei-table-header">
                 {{column.text}} 
                 <span class="dei-table-sorter" v-if="column.field in orderBy" @click="changeOrderBy(column.field)">
@@ -27,7 +27,7 @@
             </td>
             <td v-if="numberVisible">{{index + 1}}</td>
             <template v-for="(column, index) in columns">
-              <td :key="index">{{item[column.field]}}</td>
+              <td :style="{width: column.width + 'px'}" :key="index">{{item[column.field]}}</td>
             </template>
           </tr>
         </tbody>
@@ -44,7 +44,7 @@ export default {
   },
   props: {
     height: {
-      type: [Number, String]
+      type: Number,
     },
     columns: {
       type: Array,
@@ -84,22 +84,19 @@ export default {
     }
   },
   mounted() {
-    const copy = this.$refs.table.cloneNode(true)
+    const copy = this.$refs.table.cloneNode(false)
     this.copy = copy
-    copy.classList.add('dei-table-copy')
-    Array.from(copy.children).map(node => {
-      if (node.tagName.toLowerCase() !== 'thead') {
-        node.remove()
-      }
-    })
+    this.copy.classList.add('dei-table-copy')
+    let tHead = this.$refs.table.children[0]
+    let { height } = tHead.getBoundingClientRect()
+    this.$refs.tableWrapper.style.marginTop = height + 'px';
+    this.$refs.tableWrapper.style.height = this.height - height + 'px'
+    this.copy.appendChild(tHead) 
     this.$refs.wrapper.appendChild(copy)
-    this.updateHeadersWidth()
-    this.onWinodwResize = () => this.updateHeadersWidth()
-    window.addEventListener('resize', this.onWinodwResize)
+    
   },
   beforeDestroy() {
     this.copy.remove()
-    window.removeEventListener('resize', this.onWinodwResize)
   },
   computed: {
     areAllItemsSelected() {
@@ -116,12 +113,6 @@ export default {
     }
   },
   methods: {
-    updateHeadersWidth() {
-      Array.from(this.$refs.table.querySelector('thead').children[0].children).map((node, i) => {
-        const { width } = node.getBoundingClientRect();
-        this.copy.querySelector('thead').children[0].children[i].width = width + 'px';
-      })
-    },
     changeOrderBy(key) {
       const copy = JSON.parse(JSON.stringify(this.orderBy))
       console.log(copy[key])
