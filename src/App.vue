@@ -1,26 +1,32 @@
 <template>
   <div id="app">
-    {{items}}
+    <!-- {{items}}
     <div style="margin: 20px;">
       <g-table :columns="columns" :data-source="dataSource" @changeItem="x" checkable compact bordered striped :selectedItems.sync="items" :order-by.sync="orderBy" :height="400"></g-table>
     </div>
     <div style="margin: 20px;">
       <g-pager :totalPage="50" :current-page.sync="currentPage"></g-pager>
-    </div>
+    </div> -->
+    <d-uploader name="avatar" method="post" accept="image/*" action="http://127.0.0.1:5000/upload" :fileList.sync="fileList" :parseFn="parseResponse">
+      
+    </d-uploader>
   </div>
 </template>
 
 <script>
-import GPager from '@/pager/pager'
-import GTable from '@/table/table'
+import GPager from '@/pager/pager';
+import GTable from '@/table/table';
+import DUploader from '@/uploader/uploader';
 export default {
   name: "app",
   components: {
     GPager,
-    GTable
+    GTable,
+    DUploader
   },
   data() {
     return {
+      fileList: [],
       currentPage: 1,
       columns: [
         { text: '姓名', field: 'name', width: 100 },
@@ -53,6 +59,9 @@ export default {
   },
   methods: {
     x(checked, item, index) {
+    },
+    parseResponse(key) {
+      return 'http://127.0.0.1:5000/preview/' + key;
     }
   }
 };
