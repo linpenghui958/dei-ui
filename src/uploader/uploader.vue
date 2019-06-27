@@ -8,6 +8,9 @@
 <script>
 export default {
   props: {
+    fileList: {
+      type: Array,
+    },
     action: {
       type: String
     },
@@ -28,27 +31,46 @@ export default {
   },
   methods: {
     onClickUpload() {
-      console.log('onClickUpload');
+      let input = this.createInput();
+      input.addEventListener('change', () => {
+        let file = input.files[0];
+        this.uploadFile(file);
+        input.remove()
+      })
+      input.click()
+    },
+    createInput() {
       let input = document.createElement('input');
       input.type = 'file';
       document.body.append(input)
-      input.addEventListener('change', () => {
-        let file = input.files[0]
-        input.remove()
-        let formData = new FormData()
-        formData.append(this.name, file)
-        const xhr = new XMLHttpRequest();
-        xhr.open(this.method, this.action)
-        xhr.onload = () => {
-          console.log(xhr.response)
-          const res = JSON.parse(xhr.response)
-          let url = this.parseFn(res.key)
-          this.url = url
+      return input;
+    },
+    uploadFile(file){
+      let formData = new FormData()
+      formData.append(this.name, file)
+      let { name, size, type } = file
+      this.doUploadFile(formData, (res) => {
+        res = JSON.parse(res)
+        let url = this.parseFn(res.key)
+        this.url = url
+        while(this.fileList.filter(f => f.name === name).length > 0) {
+          let dotIndex = name.lastIndexOf('.');
+          let nameWithoutExtension = name.substring(0, dotIndex);
+          let extension = name.substring(dotIndex);
+          name = nameWithoutExtension + '.(1)' + extension;
         }
-        xhr.send(formData)
+        this.$emit('update:fileList', [...this.fileList, {name, type, size}])
       })
-      input.click()
+    },
+    doUploadFile(formData, success) {
+      const xhr = new XMLHttpRequest();
+      xhr.open(this.method, this.action)
+      xhr.onload = () => {
+        success(xhr.response);
+      }
+      xhr.send(formData)
     }
+    
   }
 }
 </script>

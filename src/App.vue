@@ -7,6 +7,7 @@
     <div style="margin: 20px;">
       <g-pager :totalPage="50" :current-page.sync="currentPage"></g-pager>
     </div> -->
+    {{fileList}}
     <d-uploader name="avatar" method="post" accept="image/*" action="http://127.0.0.1:5000/upload" :fileList.sync="fileList" :parseFn="parseResponse">
       
     </d-uploader>
