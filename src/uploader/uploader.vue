@@ -1,12 +1,27 @@
 <template>
   <div class="dei-uploader">
-    <button @click="onClickUpload">点击上传</button>
-    <ol class="gulu-uploader-fileList">
+    <div @click="onClickUpload">
+      <slot></slot>
+    </div>
+    <ol class="dei-uploader-fileList">
       <li v-for="file in fileList" :key="file.name">
-        <img :src="file.url" alt="">
-        <button @click="removeFile(file)">x</button>
+
+        <template v-if="file.status === 'uploading'">
+          <g-icon name="loading" class="dei-uploader-spin"></g-icon>
+        </template>
+        <template v-else-if="file.type.indexOf('image') === 0">
+          <img class="dei-uploader-image" :src="file.url" width="32" height="32" alt="">
+        </template>
+        <temaplte v-else>
+          <div class="dei-uploader-defaultImage"></div>
+        </temaplte>
+
+
+        <span class="dei-uploader-name" :class="{[file.status]: file.status}">{{file.name}}</span>
+        <button class="dei-uploader-remove" @click="onRemoveFile(file)">x</button>
       </li>
     </ol>
+    <div ref="temp" style="width: 0; height: 0; overflow: hidden;"></div>
   </div>
 </template>
 
@@ -60,7 +75,16 @@ export default {
         res = JSON.parse(res)
         let url = this.parseFn(res.key)
         this.afterUploadFile(rawFile, newName, url)
-      })
+      }, this.uploadError(newName))
+    },
+    uploadError(newName) {
+      let file = this.fileList.filter(i => i.name === newName)[0];
+      let index = this.fileList.indexOf(file);
+      let fileCopy = JSON.parse(JSON.stringify(file));
+      fileCopy.status = 'fail';
+      let fileListCopy = JSON.parse(JSON.stringify(this.fileList));
+      fileListCopy.splice(index, 1, fileCopy)
+      this.$emit('update:fileList', fileListCopy)
     },
     beforeUploadFile(rawFile) {
       let {name, size, type} = rawFile;
@@ -92,10 +116,13 @@ export default {
       arr.splice(index, 1)
       this.$emit('update:fileList', arr)
     },
-    doUploadFile(formData, success) {
+    doUploadFile(formData, success, fail) {
       const xhr = new XMLHttpRequest();
       xhr.open(this.method, this.action)
       xhr.onload = () => {
+        // if (err) {
+        //   fail()
+        // }
         success(xhr.response);
       }
       xhr.send(formData)
