@@ -7,10 +7,76 @@
     <div style="margin: 20px;">
       <g-pager :totalPage="50" :current-page.sync="currentPage"></g-pager>
     </div> -->
-    {{fileList}}
-    <d-uploader name="avatar" method="post" accept="image/*" action="http://127.0.0.1:5000/upload" :fileList.sync="fileList" :parseFn="parseResponse">
-      
-    </d-uploader>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <d-sticky>
+      <div style="border: 1px solid red;">sticky内容</div>
+    </d-sticky>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
+    <p>这是一行内容</p>
   </div>
 </template>
 
@@ -18,52 +84,14 @@
 import GPager from '@/pager/pager';
 import GTable from '@/table/table';
 import DUploader from '@/uploader/uploader';
+import DSticky from '@/sticky'
 export default {
   name: "app",
   components: {
     GPager,
     GTable,
-    DUploader
-  },
-  data() {
-    return {
-      fileList: [],
-      currentPage: 1,
-      columns: [
-        { text: '姓名', field: 'name', width: 100 },
-        { text: '分数', field: 'score'},
-      ],
-      dataSource: [
-        { id: 1, name: 'linph', score: 100},
-        { id: 2, name: 'lee', score: 60},
-        { id: 3, name: 'mack', score: 60},
-        { id: 4, name: 'leo', score: 60},
-        { id: 5, name: 'harry', score: 60},
-        { id: 6, name: 'steve', score: 60},
-        { id: 7, name: 'steve', score: 60},
-        { id: 8, name: 'leo', score: 60},
-        { id: 9, name: 'steve', score: 60},
-        { id: 10, name: 'steve', score: 60},
-        { id: 11, name: 'linph', score: 60},
-        { id: 12, name: 'steve', score: 60},
-        { id: 13, name: 'matin', score: 60},
-        { id: 14, name: 'steve', score: 60},
-        { id: 15, name: 'kevin', score: 60},
-        { id: 16, name: 'steve', score: 60},
-        { id: 17, name: 'steve', score: 60},
-      ],
-      items: [],
-      orderBy: {
-        score: 'desc',
-      }
-    };
-  },
-  methods: {
-    x(checked, item, index) {
-    },
-    parseResponse(key) {
-      return 'http://127.0.0.1:5000/preview/' + key;
-    }
+    DUploader,
+    DSticky
   }
 };
 </script>
