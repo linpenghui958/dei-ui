@@ -27,7 +27,14 @@
             </td>
             <td v-if="numberVisible">{{index + 1}}</td>
             <template v-for="(column, index) in columns">
-              <td :style="{width: column.width + 'px'}" :key="index">{{item[column.field]}}</td>
+              <td :style="{width: column.width + 'px'}" :key="index">
+                <template v-if="column.render">
+                  <vnodes :vnodes="column.render({value: item[column.field]})"></vnodes>
+                </template>
+                <template v-else>
+                  {{item[column.field]}}
+                </template>
+              </td>
             </template>
           </tr>
         </tbody>
@@ -40,16 +47,25 @@
 import DIcon from '../base/icon'
 export default {
   components: {
-    DIcon
+    DIcon,
+    vnodes: {
+      functional: true,
+      render: (h, ctx) => ctx.props.vnodes  
+    }
+  },
+  data() {
+    return {
+      columns: []
+    }
   },
   props: {
     height: {
       type: Number,
     },
-    columns: {
-      type: Array,
-      required: true
-    },
+    // columns: {
+    //   type: Array,
+    //   required: true
+    // },
     orderBy: {
       type: Object,
       default: () => ({})
@@ -84,6 +100,11 @@ export default {
     }
   },
   mounted() {
+    this.columns = this.$slots.default.map(node => {
+      let { text, field, value } = node.componentOptions.propsData;
+      let render = node.data.scopedSlots && node.data.scopedSlots.default
+      return { text, field, value, render}
+    })
     const copy = this.$refs.table.cloneNode(false)
     this.copy = copy
     this.copy.classList.add('dei-table-copy')
